@@ -6,7 +6,7 @@ var cors = require('cors')
 var port = process.env.PORT || 3000
 
 
-var whitelist = ['http://localhost:8080', 'http://kanban--vue.herokuapp.com'];
+var whitelist = ['http://localhost:8080', 'heroku'];
 var corsOptions = {
   origin: function (origin, callback) {
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -27,9 +27,13 @@ app.use(bp.urlencoded({
   extended: true
 }))
 
-let auth = require('./server-assets/auth/routes')
-app.use(auth.session)
-app.use(auth.router)
+// let auth = require('./server-assets/auth/routes')
+// app.use(auth.session)
+// app.use(auth.router)
+
+
+
+
 
 app.use((req,res,next)=>{
   if(!req.session.uid){
@@ -38,4 +42,15 @@ app.use((req,res,next)=>{
     })
   }
   next()
+})
+
+app.get('*', (req, res, next) => {
+  res.status(404).send({
+    error: 'No matching routes'
+  })
+})
+
+
+app.listen(port, () => {
+  console.log('server running on port', port)
 })

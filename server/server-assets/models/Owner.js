@@ -39,6 +39,7 @@ ownerSchema.methods.validatePassword = function (password) {
 
 ownerSchema.pre('save', function(next){
   this.markModified('foodtrucks')
+  next()
 })
 
 module.exports = mongoose.model(schemaName, ownerSchema)

@@ -13,6 +13,11 @@ var server = axios.create({
   timeout: 3000,
   withCredentials: true
 })
+var auth = axios.create({
+  baseURL: baseUrl + 'auth/',
+  timeout: 3000,
+  withCredentials: true
+})
 
 export default new vuex.Store({
   state: {
@@ -23,5 +28,27 @@ export default new vuex.Store({
   },
   actions:{
     
+    // login({commit, dispatch}, loginCredentials){
+    //   auth.post('login', loginCredentials)
+    //     .then(res=>{
+    //       commit('setOwner', res.data)
+    //       router.push({name: 'Home'})
+    //     })
+    // },
+    // logout({commit, dispatch}){
+    //   auth.delete('/logout')
+    //   .then(res=>{
+    //     commit('deleteUser')
+    //     router.push({name: 'login'})
+    //   })
+    // },
+    // register({commit, dispatch}, userData){
+    //   auth.post('register', userData)
+    //   .then(res=>{
+    //     commit('setUser', res.data)
+    //     router.push({name: 'Home'})
+    //   })
+    // },
+
   }
 })

@@ -82,7 +82,7 @@
             </select>
             <input class="form-control" type="search" value="Zipcode" id="search-input">
             <input class="form-control" type="search" value="Truck Name" id="search-input">
-            <select class="custom-select" multiple size="3" value="Cuisine Type" name="Cuisine">
+            <select class="form-control" name="Cuisine">
                 <option selected>Select Cuisine Type</option>
                 <option>Asian</option>
                 <option>Mexican</option>

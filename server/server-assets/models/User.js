@@ -9,7 +9,7 @@ var schema = new Schema({
   email: {type:String,required: true,},
   password:{type:String,required:true},
   created:{type:Number, required: true, default: Date.now()},
-  favorites: {type: Array}
+  favorites: {type: Array} //brackets?
 })
 
 schema.statics.generateHash = function (password) {

@@ -16,12 +16,12 @@ var corsOptions = {
 };
 app.use(cors(corsOptions))
 
-//Fire up database connection
+// Fire up database connection
 require('./server-assets/db/mlab-config')
 
 app.use(express.static(__dirname + '/../www/dist'))
 
-//REGISTER MIDDLEWEAR
+// REGISTER MIDDLEWEAR
 app.use(bp.json())
 app.use(bp.urlencoded({
   extended: true

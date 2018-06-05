@@ -5,6 +5,7 @@ var schemaName = 'Owner'
 const SALT = 12
 var ObjectId = Schema.Types.ObjectId
 
+// Food Truck 
 var foodtrucksSchema = new Schema({
   name: {type: String, required: true},
   truckPic:{type: String},
@@ -20,7 +21,7 @@ var foodtrucksSchema = new Schema({
   parentId: {type: ObjectId, ref:"Owner", required: true}
 })
 
-
+// Owner
 var ownerSchema = new Schema({
   username: {type:String,required:true,unique:true},
   email: {type:String,required: true,},

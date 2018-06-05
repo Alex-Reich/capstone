@@ -6,6 +6,8 @@ let session = require('./session')
 let loginError = new Error('Bad Email or Password')
 
 //  Owners
+
+//Register Owner
 router.post('/auth/register', (req, res) => {
   if (req.body.password.length < 5) {
     return res.status(400).send({
@@ -24,6 +26,7 @@ router.post('/auth/register', (req, res) => {
     })
 })
 
+// Login as Owner
 router.post('/auth/login', (req, res) => {
   Owners.findOne({
       email: req.body.email
@@ -43,6 +46,8 @@ router.post('/auth/login', (req, res) => {
     })
 })
 
+
+// Delete 
 router.delete('/auth/logout', (req, res) => {
   req.session.destroy(err => {
     if (err) {
@@ -54,6 +59,7 @@ router.delete('/auth/logout', (req, res) => {
   })
 })
 
+// Get Owner
 router.get('/auth/authenticate', (req, res) => {
   Owners.findById(req.session.uid)
     .then(owner => {

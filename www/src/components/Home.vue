@@ -66,7 +66,6 @@
             </div>
           </div>
 
-      <button type="submit">Register</button>
       <h1>Trucking Hangry</h1>
 
       <img src="http://placehold.it/150x150">

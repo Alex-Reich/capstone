@@ -16,7 +16,7 @@ router.post('/auth/register', (req, res) => {
   Owners.create(req.body)
     .then(owner => {
       delete owner._doc.password
-      req.session.oid = owner._id
+      req.session.uid = owner._id
       res.send(owner)
     })
     .catch(err => {
@@ -36,7 +36,7 @@ router.post('/auth/login', (req, res) => {
         return res.status(400).send(loginError)
       }
       delete owner._doc.password
-      req.session.oid= owner._id
+      req.session.uid= owner._id
       res.send(owner)
     }).catch(err => {
       res.status(400).send(loginError)
@@ -55,7 +55,7 @@ router.delete('/auth/logout', (req, res) => {
 })
 
 router.get('/auth/authenticate', (req, res) => {
-  Owners.findById(req.session.oid)
+  Owners.findById(req.session.uid)
     .then(owner => {
       if (!owner) {
         return res.status(401).send({

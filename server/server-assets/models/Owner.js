@@ -9,8 +9,12 @@ var foodtrucksSchema = new Schema({
   name: {type: String, required: true},
   truckPic:{type: String},
   menu: {type: String},
+  hours: {type: String},
+  // default location to their GPS location
+  location: {type: String},
+  description: {type: String},
+  created:{type:Number, required: true, default: Date.now()},
   parentId: {type: ObjectId, ref:"Owner", required: true}
-  
 })
 
 
@@ -18,8 +22,9 @@ var ownerSchema = new Schema({
   username: {type:String,required:true,unique:true},
   email: {type:String,required: true,},
   password:{type:String,required:true},
-  foodtrucks: [foodtrucksSchema]
-
+  foodtrucks: [foodtrucksSchema],
+  created:{type:Number, required: true, default: Date.now()},
+  isOwner: {type: Boolean}
 })
 
 ownerSchema.statics.generateHash = function (password) {

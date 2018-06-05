@@ -8,7 +8,8 @@ var schema = new Schema({
   username: {type:String,required:true,unique:true},
   email: {type:String,required: true,},
   password:{type:String,required:true},
-  created:{type:Number, required: true, default: Date.now()}
+  created:{type:Number, required: true, default: Date.now()},
+  favorites: {type: Array}
 })
 
 schema.statics.generateHash = function (password) {

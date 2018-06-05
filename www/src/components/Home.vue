@@ -6,7 +6,7 @@
     </div>
     <div class="main-bottom-style">
       <form @submit.prevent="search">
-        <select name="proximity" >
+        <select name="proximity">
           <option value=""></option>
         </select>
         <button type="submit">Find that truck</button>

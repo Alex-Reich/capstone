@@ -68,7 +68,7 @@
                 <option>Italian</option>
                 <option>Other</option>
               </select>
-            <button type="submit">Find that truck</button>
+            <button type="submit">Find that truck</button> <!--link to search component-->
           </div>
         </div>
       </form>

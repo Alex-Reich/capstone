@@ -2,20 +2,19 @@
   <div class="home container-fluid">
     <div class="main-top-style">
 
-<<<<<<< HEAD
+
       <!-- <button type="button" class='btn btn-link' data-toggle="modal" data-target="#createLoginModal">Login</button>
           Modal -->
       <!-- <div class="modal fade" id="createLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-=======
-<<<<<<< HEAD
+
 <button type="button" class='btn btn-link' data-toggle="modal" data-target="#createLoginModal">Login</button>
           <!-- Modal -->
-=======
+
 <!-- <button type="button" class='btn btn-link' data-toggle="modal" data-target="#createLoginModal">Login</button>
           Modal -->
->>>>>>> aaba149532541943cdea025e0d21b37e13ea93b6
+
           <!-- <div class="modal fade" id="createLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
->>>>>>> e22b9aaa8c146254528425514d199bde3316ced3
+
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -50,7 +49,6 @@
     </div>
     <div class="main-bottom-style">
       <form @submit.prevent="search">
-<<<<<<< HEAD
         <div class="form-group row">
           <div class="col-10">
             <select class="form-control" name="proximity">
@@ -73,12 +71,6 @@
             <button type="submit">Find that truck</button>
           </div>
         </div>
-=======
-        <select name="proximity">
-          <option value=""></option>
-        </select>
-        <button type="submit">yo</button>
->>>>>>> e22b9aaa8c146254528425514d199bde3316ced3
       </form>
     </div>
   </div>

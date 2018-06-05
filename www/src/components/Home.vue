@@ -9,7 +9,7 @@
         <select name="proximity">
           <option value=""></option>
         </select>
-        <button type="submit">Find that truck</button>
+        <button type="submit">yo</button>
       </form>
     </div>
   </div>

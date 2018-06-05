@@ -2,9 +2,9 @@
   <div class="home container-fluid">
     <div class="main-top-style">
 
-<button type="button" class='btn btn-link' data-toggle="modal" data-target="#createLoginModal">Login</button>
-          <!-- Modal -->
-          <div class="modal fade" id="createLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <button type="button" class='btn btn-link' data-toggle="modal" data-target="#createLoginModal">Login</button>
+          Modal -->
+          <!-- <div class="modal fade" id="createLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -31,9 +31,9 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
-<button type="submit">Register</button>
+          <button type="submit">Register</button>
       <h1>Trucking Hangry</h1>
       <img src="http://placehold.it/150x150">
     </div>

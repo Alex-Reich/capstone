@@ -66,7 +66,7 @@
             </div>
           </div>
 
-      <h1>Trucking Hangry</h1>
+      <h1 class="Title">Trucking Hangry</h1>
 
       <img src="http://placehold.it/150x150">
     </div>
@@ -97,6 +97,7 @@
       </form>
     </div>
   </div>
+  
   </div>
 </template>
 
@@ -159,5 +160,8 @@
 
   .main-bottom-style {
     background-color: rgb(230, 220, 240)
+  }
+  .Title{
+    font-family: 'Cabin Sketch', cursive;
   }
 </style>

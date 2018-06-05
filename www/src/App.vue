@@ -13,7 +13,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Cabin Sketch', cursive;
+  font-family: 'Gochi Hand', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

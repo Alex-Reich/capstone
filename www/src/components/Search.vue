@@ -1,6 +1,6 @@
 <template>
   <div class="google-map" :id="truck-locations">
-
+    
   </div>
   <!-- add this map to other components with <google-map name="Map"></google-map> -->
 </template>

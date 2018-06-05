@@ -50,17 +50,17 @@
     <div class="main-bottom-style">
       <form @submit.prevent="search">
         <div class="form-group row">
-          <div class="col-10">
+          <div class="col-sm-10 offset-sm-1 text-center">
             <select class="form-control" name="proximity">
               <option>0-5 miles</option>
               <option>5-10 miles</option>
               <option>10-15 miles</option>
               <option>15-20 miles</option>
             </select>
-            <input class="form-control" type="search" placeholder="Zip Code" value="Zip Code" id="search-input">
+            <input class="form-control" type="search" value="Zipcode" id="search-input">
             <input class="form-control" type="search" value="Truck Name" id="search-input">
-            <input class="form-control" type="search" value="Cuisine Type" id="search-input">
-            <select class="form-control" name="Cuisine" placeholder="Cuisine Type">
+            <select class="custom-select" multiple size="3" value="Cuisine Type" name="Cuisine">
+                <option selected>Select Cuisine Type</option>
                 <option>Asian</option>
                 <option>Mexican</option>
                 <option>American</option>

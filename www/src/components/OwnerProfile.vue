@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="ownerProf">
 
         <button class='btn btn-primary'>Edit Profile</button>
 
@@ -51,13 +51,21 @@
 </template>
 
 
+<script>
+  export default {
+    name: '',
+    data() {
+      return {
 
-        <script>
+      }
+    },
+    computed: {},
+    methods: {}
+  }
 
-        </script>
+</script>
+
+<style>
 
 
-
-        <style>
-
-        </style>
+</style>

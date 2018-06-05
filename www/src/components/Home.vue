@@ -2,9 +2,9 @@
   <div class="home container-fluid">
     <div class="main-top-style">
 
-<!-- <button type="button" class='btn btn-link' data-toggle="modal" data-target="#createLoginModal">Login</button>
+      <!-- <button type="button" class='btn btn-link' data-toggle="modal" data-target="#createLoginModal">Login</button>
           Modal -->
-          <!-- <div class="modal fade" id="createLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <!-- <div class="modal fade" id="createLoginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
@@ -33,16 +33,34 @@
             </div>
           </div> -->
 
-          <button type="submit">Register</button>
+      <button type="submit">Register</button>
       <h1>Trucking Hangry</h1>
       <img src="http://placehold.it/150x150">
     </div>
     <div class="main-bottom-style">
       <form @submit.prevent="search">
-        <select name="proximity">
-          <option value=""></option>
-        </select>
-        <button type="submit">Find that truck</button>
+        <div class="form-group row">
+          <div class="col-10">
+            <select class="form-control" name="proximity">
+              <option>0-5 miles</option>
+              <option>5-10 miles</option>
+              <option>10-15 miles</option>
+              <option>15-20 miles</option>
+            </select>
+            <input class="form-control" type="search" placeholder="Zip Code" value="Zip Code" id="search-input">
+            <input class="form-control" type="search" value="Truck Name" id="search-input">
+            <input class="form-control" type="search" value="Cuisine Type" id="search-input">
+            <select class="form-control" name="Cuisine" placeholder="Cuisine Type">
+                <option>Asian</option>
+                <option>Mexican</option>
+                <option>American</option>
+                <option>Soul Food</option>
+                <option>Italian</option>
+                <option>Other</option>
+              </select>
+            <button type="submit">Find that truck</button>
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -61,11 +79,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .main-top-style{
+  .main-top-style {
     background-color: orange;
     color: white;
   }
-  .main-bottom-style{
-    background-color: rgb(230,220,240)
+
+  .main-bottom-style {
+    background-color: rgb(230, 220, 240)
   }
 </style>

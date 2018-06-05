@@ -66,16 +66,35 @@
             </div>
           </div>
 
+      <button type="submit">Register</button>
       <h1>Trucking Hangry</h1>
 
       <img src="http://placehold.it/150x150">
     </div>
     <div class="main-bottom-style">
       <form @submit.prevent="search">
-        <select name="proximity">
-          <option value=""></option>
-        </select>
-        <button type="submit">Find that truck</button>
+        <div class="form-group row">
+          <div class="col-sm-10 offset-sm-1 text-center">
+            <select class="form-control" name="proximity">
+              <option>0-5 miles</option>
+              <option>5-10 miles</option>
+              <option>10-15 miles</option>
+              <option>15-20 miles</option>
+            </select>
+            <input class="form-control" type="search" value="Zipcode" id="search-input">
+            <input class="form-control" type="search" value="Truck Name" id="search-input">
+            <select class="custom-select" multiple size="3" value="Cuisine Type" name="Cuisine">
+                <option selected>Select Cuisine Type</option>
+                <option>Asian</option>
+                <option>Mexican</option>
+                <option>American</option>
+                <option>Soul Food</option>
+                <option>Italian</option>
+                <option>Other</option>
+              </select>
+            <button type="submit">Find that truck</button> <!--link to search component-->
+          </div>
+        </div>
       </form>
     </div>
   </div>
@@ -134,11 +153,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .main-top-style{
+  .main-top-style {
     background-color: orange;
     color: white;
   }
-  .main-bottom-style{
-    background-color: rgb(230,220,240)
+
+  .main-bottom-style {
+    background-color: rgb(230, 220, 240)
   }
 </style>

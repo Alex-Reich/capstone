@@ -2,10 +2,10 @@ var router = require('express').Router()
 var Owners = require('../models/owner')
 var session = require('../../auth/session')
 
-// Get All Trucks
-router.get('/api/owners/trucks', (req, res) => {
+// Get All Owners, to get Trucks
+router.get('/api/owners', (req, res) => {
   Owners.find(req.query)
-    .then(owners => {
+  .then(owners => {
       res.status(200).send(owners)
     })
     .catch(err => {

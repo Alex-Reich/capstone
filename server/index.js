@@ -31,7 +31,8 @@ let auth = require('./auth/routes')
 app.use(auth.session)
 app.use(auth.router)
 
-
+var owners = require('./server-assets/routes/owners')
+app.use(owners.router)
 
 
 

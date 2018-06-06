@@ -15,9 +15,9 @@ var foodtrucksSchema = new Schema({
   // default location to their GPS location
   location: {type: String},
   description: {type: String},
+  rating: {type: String, required: true, default: 0},
+  value:{type: String, required: true, default: 0},
   created:{type:Number, required: true, default: Date.now()},
-  rating: {type: String, required: true},
-  value:{type: String, required: true},
   parentId: {type: ObjectId, ref:"Owner", required: true}
 })
 

@@ -13,21 +13,21 @@ router.get('/api/owners', (req, res) => {
     })
 })
 
-// Add a truck to an owner
-router.put('/api/owners/:id/trucks', (req, res) => {
-  Owners.findById(req.params.id)
-    .then(function (owner) {
-      owner.foodTrucks.addToSet(req.body)
-      owner.save()
-        .then(() => {
-          console.log("Successfully Updated ", owner)
-          res.status(200).send(owner)
-        })
-    })
-    .catch(err => {
-      res.status(400).send(err)
-    })
-})
+// Add a truck to an owner, maybe revisit
+// router.put('/api/owners/:id/trucks', (req, res) => {
+//   Owners.findById(req.params.id)
+//     .then(function (owner) {
+//       owner.foodtrucks.addToSet(req.body)
+//       owner.save()
+//         .then(() => {
+//           console.log("Successfully Updated ", owner)
+//           res.status(200).send(owner)
+//         })
+//     })
+//     .catch(err => {
+//       res.status(400).send(err)
+//     })
+// })
 
 // Edit Truck (Replaces entire Owner array)
 router.put('/api/owners/:id', (req, res) => {

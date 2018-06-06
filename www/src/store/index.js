@@ -46,11 +46,11 @@ export default new vuex.Store({
       auth.post('login', loginCredentials)
         .then(res=>{
           commit('setOwner', res.data)
-          router.push({name: 'Home'})
+          router.push({name: 'OwnerProfile'})
         })
     },
     logout({commit, dispatch}){
-      auth.delete('/logout')
+      auth.delete('/home')
       .then(res=>{
         commit('deleteOwner')
         router.push({name: 'login'})
@@ -60,7 +60,7 @@ export default new vuex.Store({
       auth.post('register', userData)
       .then(res=>{
         commit('setOwner', res.data)
-        router.push({name: 'Home'})
+        router.push({name: 'OwnerProfile'})
       })
     },
 

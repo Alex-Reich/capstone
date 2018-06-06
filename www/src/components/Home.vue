@@ -127,10 +127,10 @@
     },
     methods: {
       ownerLogin() {
-        this.$store.dispatch('login', this.owner)
+        this.$store.dispatch('login', this.login)
       },
       ownerRegister() {
-        this.$store.dispatch('register', this.owner)
+        this.$store.dispatch('register', this.register)
       }
     }
 

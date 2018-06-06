@@ -59,7 +59,7 @@
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" @click="login" class="btn btn-primary" data-dismiss="modal">Login</button>
+                  <button type="submit" class="btn btn-primary" data-dismiss="modal">Register</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
@@ -127,22 +127,12 @@
     },
     methods: {
       ownerLogin() {
-        this.$store.dispatch()
-        this.register = {
-          email: '',
-          password: ''
-        }
+        this.$store.dispatch('login', this.owner)
       },
       ownerRegister() {
-        this.$store.dispatch()
-        this.register = {
-          name: '',
-          email: '',
-          password: ''
-        }
-
+        this.$store.dispatch('register', this.owner)
       }
-    },
+    }
 
 
 

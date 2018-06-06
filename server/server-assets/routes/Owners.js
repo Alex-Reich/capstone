@@ -40,8 +40,8 @@ router.put('/api/owners/:id', (req, res) => {
     })
 })
 
-// Delete Truck
-router.delete('/api/owners/:id', (req,res)=>{
+// Delete Owner
+router.delete('/api/owners/:id/', (req,res)=>{
   Owners.findByIdAndRemove(req.params.id)
     .then(data=>{
       res.send("Successfully Deleted Owner")

@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import Owner from '@components/OwnerProfile'
-import Search from '@components/Search'
+import Owner from '@/components/OwnerProfile'
+import Search from '@/components/Search'
 
 Vue.use(Router)
 

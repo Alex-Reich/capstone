@@ -1,5 +1,4 @@
 let router = require('express').Router();
-// let Users = require('../server-assets/models/user');
 let Owners = require('../server-assets/models/owner');
 let session = require('./session')
 

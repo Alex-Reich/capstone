@@ -5,7 +5,7 @@ var session = require('../../auth/session')
 // Get All Owners, to get Trucks
 router.get('/api/owners', (req, res) => {
   Owners.find(req.query)
-  .then(owners => {
+    .then(owners => {
       res.status(200).send(owners)
     })
     .catch(err => {
@@ -13,42 +13,58 @@ router.get('/api/owners', (req, res) => {
     })
 })
 
-// Add a truck to an owner, maybe revisit
-// router.put('/api/owners/:id/trucks', (req, res) => {
-//   Owners.findById(req.params.id)
-//     .then(function (owner) {
-//       owner.foodtrucks.addToSet(req.body)
-//       owner.save()
-//         .then(() => {
-//           console.log("Successfully Updated ", owner)
-//           res.status(200).send(owner)
-//         })
-//     })
-//     .catch(err => {
-//       res.status(400).send(err)
-//     })
-// })
+// Add a truck to an owner
+router.post('/api/owners/:id/trucks', (req, res) => {
+  Owners.findById(req.params.id)
+    .then(owner => {
+      console.log(owner.foodtrucks)
+      owner.foodtrucks.addToSet(req.body)
+      owner.save()
+        .then(() => {
+          console.log("Successfully Added Truck")
+          res.status(200).send(owner)
+        })
+    })
+    .catch(err => {
+      res.status(400).send(err)
+    })
+})
 
 // Edit Truck (Replaces entire Owner array)
 router.put('/api/owners/:id', (req, res) => {
   Owners.findByIdAndUpdate(req.params.id, req.body, { new: true })
-  .then(owner => {
-    res.send(owner)
-  })
+    .then(owner => {
+      res.send(owner)
+    })
     .catch(err => {
       res.status(400).send(err)
     })
 })
 
 // Delete Owner
-router.delete('/api/owners/:id/', (req,res)=>{
+router.delete('/api/owners/:id/', (req, res) => {
   Owners.findByIdAndRemove(req.params.id)
-    .then(data=>{
+    .then(data => {
       res.send("Successfully Deleted Owner")
     })
-    .catch(err=>{
+    .catch(err => {
       res.status(400).send(err)
     })
 })
 
+// Delete Truck
+router.delete('/api/owners/:id/trucks/:truckid', (req, res) => {
+  Owners.findById(req.params.id)
+    .then(owner => {
+      var truck = owner.foodtrucks.id(req.params.truckid)
+      truck.remove()
+      owner.save()
+      .then(() =>{
+        res.send("Successfully Deleted Truck")
+      })
+      .catch(err => {
+        res.status(400).send(err)
+      })
+    })
+})
 module.exports = { router }

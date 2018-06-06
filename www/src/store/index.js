@@ -37,12 +37,6 @@ export default new vuex.Store({
     },
     setTrucks(state, trucks){
       state.foodtrucks = trucks
-    },
-    updateOwners(state, id){
-      var index=state.owner.findIndexById(owner =>{
-        return owner._id == id
-      })
-      state.owner.splice(index, 1)
     }
   },
 
@@ -93,6 +87,21 @@ export default new vuex.Store({
       .then(res=>{
         commit('setActiveTruck', res.data)
       })
+    },
+    updateOwners({state}, foodtruckid){
+      var index=state.owner.foodtrucks.findIndexById(foodtruck =>{
+        return foodtruck._id == foodtruckid
+      })
+      state.owner.splice(index, 1)
+    },
+    deleteTruck({commit, dispatch, state}, id){
+      api.delete('/api/owner/'+state.owner._id+'trucks/'+id)
+        .then(res=>{
+          dispatch('getTrucks', id)
+        })
+        .catch(err=>{
+          console.log(err)
+        })
     }
 
   }

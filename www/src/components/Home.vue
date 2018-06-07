@@ -15,7 +15,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form v-on:submit.prevent="login">
+                  <form v-on:submit.prevent="ownerLogin">
                     <div class="form-group">
                       <input type="text" name="ownerUsername" v-model="
                           login.username" class="form-control" id="formGroupExampleInput" placeholder="Username" required>
@@ -24,10 +24,10 @@
                       <input type="text" name="password" v-model="
                               login.password" class="form-control" id="formGroupExampleInput" placeholder="Password">
                     </div>
+                    <button type="button" @click="ownerLogin" class="btn btn-primary" data-dismiss="modal">Login</button>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" @click="login" class="btn btn-primary" data-dismiss="modal">Login</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
@@ -46,7 +46,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                  <form v-on:submit.prevent="register">
+                  <form v-on:submit.prevent="ownerRegister">
                     <div class="form-group">
                       <input type="text" name="ownerRegister" v-model="register.username" class="form-control" id="formGroupExampleInput" placeholder="Username" required>
                     </div>
@@ -56,10 +56,10 @@
                     <div class="form-group">
                       <input type="text" name="password" v-model="register.password" class="form-control" id="formGroupExampleInput" placeholder="Password">
                     </div>
+                    <button type="button" @click="ownerRegister" class="btn btn-primary" data-dismiss="modal">Register</button>
                   </form>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary" data-dismiss="modal">Register</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
               </div>
@@ -104,8 +104,7 @@
 
 
 <script>
-// import router from './router'
-// import owner from '../owner'
+import router from '../router'
 
   export default {
     name: 'Home',
@@ -127,9 +126,11 @@
     },
     methods: {
       ownerLogin() {
+        console.log("login method")
         this.$store.dispatch('login', this.login)
       },
       ownerRegister() {
+        console.log("register method")
         this.$store.dispatch('register', this.register)
       }
     }

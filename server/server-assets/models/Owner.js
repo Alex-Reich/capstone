@@ -35,7 +35,7 @@ ownerSchema.statics.generateHash = function (password) {
 }
 
 ownerSchema.methods.validatePassword = function (password) {
-  return bcrypt.compare(password, this.hash)
+  return bcrypt.compare(password, this.password)
 }
 
 ownerSchema.pre('save', function(next){

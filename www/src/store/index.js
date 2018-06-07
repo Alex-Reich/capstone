@@ -57,6 +57,7 @@ export default new vuex.Store({
       })
     },
     register({commit, dispatch}, userData){
+      console.log(userData)
       auth.post('register', userData)
       .then(res=>{
         commit('setOwner', res.data)

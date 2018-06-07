@@ -28,8 +28,8 @@ router.post('/auth/register', (req, res) => {
 // Login as Owner
 router.post('/auth/login', (req, res) => {
   Owners.findOne({
-      email: req.body.email
-    })
+    username: req.body.username
+  })
     .then(owner => {
       if (!owner) {
         return res.status(400).send(loginError)

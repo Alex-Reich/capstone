@@ -2,7 +2,13 @@
     <div class="ownerProf">
 
         <button class='btn btn-primary'>Edit Profile</button>
-
+        <i class="far fa-check-square"></i>
+        <i class="far fa-address-card"></i>
+        <i class="fas fa-dollar-sign"></i>
+        <i class="far fa-minus-square"></i>
+        <i class="far fa-plus-square"></i>
+        <i class="far fa-stop-circle"></i>
+        <i class="far fa-edit"></i>
 
         <!-- Check in Modal -->
         <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#checkinModal">Check In</button>

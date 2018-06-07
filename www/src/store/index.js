@@ -75,6 +75,7 @@ export default new vuex.Store({
       api.get('api/owners')
       .then(res=>{
         commit('setTrucks', res.data)
+        router.push({name: "Search"})
       })
     },
     deleteOwner({commit, dispatch}, id){

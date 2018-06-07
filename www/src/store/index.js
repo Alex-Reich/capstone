@@ -19,11 +19,60 @@ var auth = axios.create({
   withCredentials: true
 })
 
+var geoLoc = axios.create({
+  baseURL: 'https://www.googleapis.com/geolocation/v1/geolocate',
+  timeout: 3000,
+  withCredentials: true
+})
+
+var geoCode = axios.create({
+  baseURL: 'https://maps.googleapis.com/maps/api/geocode'
+})
+
+var googleApiKey = '?key=AIzaSyCp89R6XqYSrTub4SbaoOnKj2IQ-iC2RoU'
+
+function formatGeoCodeString(obj){
+  var outQuery =''
+  var commaCount = 0
+  for(var key in obj){
+    var value = obj[key].split(' ').join('+')
+    outQuery+= commaCount<2 ? value+',+' : value
+    commaCount++
+  }
+  return outQuery
+}
+
+// function handlePermission(){
+//   navigator.permissions.query({name: 'geolocation'}).then(function(result){
+//     if(result.state=='granted'){
+//       report(result.state);
+//       geoBtn.style.display='none';
+//     }else if(result.state=='prompt'){
+//       report(result.state);
+//       geoBtn.style.display='none';
+//       navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
+//     }else if(result.state=='denied'){
+//       report(result.state);
+//       geoBtn.style.display='inline';
+//     }
+//     result.onchange=function(){
+//       report(result.state);
+//     }
+//   })
+//   return result.state
+// }
+
+// function report(state){
+//   console.log('Permission '+state);
+// }
+
 export default new vuex.Store({
   state: {
    owner: {},
    foodtrucks: [],
-   activeTruck: {}
+   activeTruck: {},
+   map:{},
+   userGeoLocation:{}
   },
   mutations:{
     setOwner(state, owner){
@@ -37,6 +86,13 @@ export default new vuex.Store({
     },
     setTrucks(state, trucks){
       state.foodtrucks = trucks
+    },
+    setMap(state,payload){
+      console.log('You called the setMap mutation and didnt write it')
+    },
+    setUserGeoLoc(state,payload){
+      state.userGeoLocation=payload
+      console.log('this is the user geoloc: ',state.userGeoLocation)
     }
   },
 
@@ -99,6 +155,51 @@ export default new vuex.Store({
         .catch(err=>{
           console.log(err)
         })
+    },
+
+    //////////// Google Map Stuff /////////////////////
+    getMap({commit,dispatch},payload){
+      console.log(payload.query)
+      api.post('/api/google',payload)
+        .then(res=>{
+          console.log(res)
+        })
+    },
+    getGeoLocation({commit,dispatch}){
+      geoLoc.post(googleApiKey)
+        .then(res=>{
+          commit('setUserGeoLoc',res.data.location)
+        })
+    },
+    convertGeoCode({commit,dispatch},payload){
+      var query=formatGeoCodeString(payload)
+      geoCode.get('/json?address='+query+googleApiKey)
+        .then(res=>{
+          console.log(res.data.results[0].geometry.location)
+          console.log('geocode was converted to the above but you still need to do something with it')
+        })
+    },
+    renderStartMap({commit,dispatch,state}){
+      
+      // if (handlePermission()) {
+      //   navigator.permissions.query({ name: 'geolocation' }).then(res => {
+      //     switch (res.state) {
+      //       case "granted":
+      //         var test = navigator.geolocation.getCurrentPosition(position => {
+      //           this.position = position
+      //           this.windowGeoLoc = {
+      //             lat: this.position.coords.latitude,
+      //             lng: this.position.coords.longitude
+      //           }
+      //           this.$store.commit('setUserGeoLoc', this.windowGeoLoc)
+      //         })
+      //         break;
+      //     }
+      //   })
+      // }
+      // else {
+      //   console.log('Geolocation is not supported by this browser.')
+      // }      
     }
 
   }

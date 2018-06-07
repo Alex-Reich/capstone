@@ -96,7 +96,14 @@
       </form>
     </div>
   </div>
-  
+  <button @click="getGeoLocation">Geo</button>
+    <form @submit.prevent="convertGeoCode">
+      <input type="text" placeholder="Address" v-model="geocode.street" required>
+      <input type="text" placeholder="City" v-model="geocode.city" required>
+      <input type="text" placeholder="State" v-model="geocode.state" required>
+      <button type="submit">Submit</button>
+    </form>
+  <search></search>
   </div>
 </template>
 
@@ -104,9 +111,15 @@
 
 <script>
 import router from '../router'
-
+import search from './Search'
   export default {
     name: 'Home',
+    components:{
+      search
+    },
+    mounted(){
+      this.$store.dispatch('renderStartMap')
+    },
     data() {
       return {
         login: {
@@ -123,9 +136,20 @@ import router from '../router'
           zipcode: '',
           truckname: '',
           cuisineType:''
+        },
+        query: '',
+        userGeoLocation: {},
+        geocode: {
+          street: '',
+          city: '',
+          state: ''
+        },
+        windowGeoLoc: {
+          lat: 0,
+          lng: 0
         }
-        }
-      },
+      }
+    },
     computed: {
 
     },
@@ -138,13 +162,17 @@ import router from '../router'
       },
       getTrucks() {
        this.$store.dispatch('getTrucks', this.search)
+      },
+      getGeoLocation() {
+        this.$store.dispatch('getGeoLocation')
+      },
+      convertGeoCode() {
+        this.query = this.geocode.street + ', ' + this.geocode.city + ', ' + this.geocode.state
+        this.$store.dispatch('convertGeoCode', this.geocode)
+        this.geocode = { street: '', city: '', state: '' }
+        this.query = ''
       }
-    }
-
-
-
-
-    
+    }    
   }
 </script>
 

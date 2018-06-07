@@ -19,6 +19,7 @@ var auth = axios.create({
   withCredentials: true
 })
 
+////// geoLoc and geoCode are for making google requests to get the lat and lng
 var geoLoc = axios.create({
   baseURL: 'https://www.googleapis.com/geolocation/v1/geolocate',
   timeout: 3000,
@@ -28,9 +29,10 @@ var geoLoc = axios.create({
 var geoCode = axios.create({
   baseURL: 'https://maps.googleapis.com/maps/api/geocode'
 })
-
+/////// this is my-WD API Key do not reuse!!! 
 var googleApiKey = '?key=AIzaSyCp89R6XqYSrTub4SbaoOnKj2IQ-iC2RoU'
 
+////// this function is for formatting an object that is an address into a string that can be sent to google geocode.
 function formatGeoCodeString(obj){
   var outQuery =''
   var commaCount = 0
@@ -41,7 +43,7 @@ function formatGeoCodeString(obj){
   }
   return outQuery
 }
-
+///////// When this is active it will make sure we have permission from the user to use their window location.
 // function handlePermission(){
 //   navigator.permissions.query({name: 'geolocation'}).then(function(result){
 //     if(result.state=='granted'){
@@ -97,7 +99,7 @@ export default new vuex.Store({
   },
 
   actions:{
-    // Owner
+    //////////////////// The AUTH Actions ///////////////////
     login({commit, dispatch}, loginCredentials){
       auth.post('login', loginCredentials)
         .then(res=>{
@@ -120,7 +122,13 @@ export default new vuex.Store({
         router.push({name: 'OwnerProfile'})
       })
     },
-
+    /////////////// The Owner Actions /////////////////////////
+    deleteOwner({commit, dispatch}, id){
+      api.delete('api/owner/'+id)
+      .then(res=>{
+        commit('setOwner', id)
+      })
+    },
     addTruck({commit, dispatch}, owner){
       api.put('api/owners/'+owner._id, owner)
       .then (res=>{
@@ -134,19 +142,12 @@ export default new vuex.Store({
         router.push({name: "Search"})
       })
     },
-    deleteOwner({commit, dispatch}, id){
-      api.delete('api/owner/'+id)
-      .then(res=>{
-        commit('setOwner', id)
-      })
-    },
     viewTruck({commit, dispatch, state}, id){
       api.get('api/trucks/'+ id)
       .then(res=>{
         commit('setActiveTruck', res.data)
       })
     },
-
     deleteTruck({commit, dispatch, state}, id){
       api.delete('/api/owner/'+state.owner._id+'trucks/'+id)
         .then(res=>{
@@ -156,8 +157,7 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-
-    //////////// Google Map Stuff /////////////////////
+    ////////////////////// Google Map Actions /////////////////////
     getMap({commit,dispatch},payload){
       console.log(payload.query)
       api.post('/api/google',payload)

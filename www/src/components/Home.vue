@@ -71,18 +71,18 @@
       <img src="http://placehold.it/150x150">
     </div>
     <div class="main-bottom-style">
-      <form @submit.prevent="search">
+      <form @submit.prevent="getTrucks">
         <div class="form-group row">
           <div class="col-sm-10 offset-sm-1 text-center">
-            <select class="form-control" name="proximity">
+            <select class="form-control" name="proximity" v-model="search.distance">
               <option>0-5 miles</option>
               <option>5-10 miles</option>
               <option>10-15 miles</option>
               <option>15-20 miles</option>
             </select>
-            <input class="form-control" type="search" value="Zipcode" id="search-input">
-            <input class="form-control" type="search" value="Truck Name" id="search-input">
-            <select class="form-control" name="Cuisine">
+            <input class="form-control" type="search" placeholder="Zipcode" id="search-input" v-model="search.zipcode">
+            <input class="form-control" type="search" placeholder="Truck Name" id="search-input" v-model="search.truckname">
+            <select class="form-control" name="Cuisine" v-model="search.cuisineType">
                 <option selected>Select Cuisine Type</option>
                 <option>Asian</option>
                 <option>Mexican</option>
@@ -91,7 +91,7 @@
                 <option>Italian</option>
                 <option>Other</option>
               </select>
-            <button type="submit">Find that truck</button> <!--link to search component-->
+            <button type="submit" @click="getTrucks">Find that truck</button> <!--link to search component-->
           </div>
         </div>
       </form>
@@ -118,6 +118,12 @@ import router from '../router'
           username: '',
           email: '',
           password: '',
+        },
+        search:{
+          distance:'',
+          zipcode: '',
+          truckname: '',
+          cuisineType:''
         }
         }
       },
@@ -126,12 +132,13 @@ import router from '../router'
     },
     methods: {
       ownerLogin() {
-        console.log("login method")
         this.$store.dispatch('login', this.login)
       },
       ownerRegister() {
-        console.log("register method")
         this.$store.dispatch('register', this.register)
+      },
+      getTrucks() {
+       this.$store.dispatch('getTrucks', this.search)
       }
     }
 

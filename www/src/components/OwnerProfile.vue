@@ -11,7 +11,7 @@
         <i class="far fa-edit"></i>
 
         <!-- Check in Modal -->
-        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#checkinModal">Check In</button>
+        <!-- <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#checkinModal">Check In</button>
         <div class="modal fade" id="checkinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -23,9 +23,9 @@
                     </div>
                     <div class="modal-body">
                         <form v-on: submit.prevent="checkin">
-                            <div class="form-group">
+                            <div class="form-group"> -->
                                 <!-- add v-model="test.test" info into input -->
-                                <input type="text" name="truckName" class="form-control" id="formGroupExampleInput" placeholder="Truck Name" required>
+                                <!-- <input type="text" name="truckName" class="form-control" id="formGroupExampleInput" placeholder="Truck Name" required>
                             </div>
                             <div class="form-group">
                                 <input type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Location">
@@ -48,7 +48,7 @@
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <h1>Current Active Trucks:</h1>
 

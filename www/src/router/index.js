@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import Owner from '@/components/OwnerProfile'
+import OwnerProfile from '@/components/OwnerProfile'
 import Search from '@/components/Search'
 
 Vue.use(Router)
@@ -14,9 +14,9 @@ export default new Router({
       component: Home
     },
     {
-    path:'/Owner/:ownerId',
-    name: 'Owner',
-    component: Owner
+    path:'/Owner',
+    name: 'OwnerProfile',
+    component: OwnerProfile
     },
     {
     path:'/Search',

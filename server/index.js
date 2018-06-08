@@ -31,12 +31,6 @@ let auth = require('./auth/routes')
 app.use(auth.session)
 app.use(auth.router)
 
-var owners = require('./server-assets/routes/owners')
-app.use(owners.router)
-
-let goog = require('./server-assets/routes/Gapi')
-app.use(goog.router)
-
 app.use((req,res,next)=>{
   if(!req.session.uid){
     return res.status(401).send({
@@ -45,6 +39,13 @@ app.use((req,res,next)=>{
   }
   next()
 })
+
+var owners = require('./server-assets/routes/owners')
+app.use(owners.router)
+
+let goog = require('./server-assets/routes/Gapi')
+app.use(goog.router)
+
 
 app.get('*', (req, res, next) => {
   res.status(404).send({

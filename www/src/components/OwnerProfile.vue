@@ -1,5 +1,6 @@
 <template>
     <div class="ownerProf" >
+        <h1 class="title">Hello {{owner.username}}</h1>
 
         <button class='btn btn-primary'>Edit Profile</button>
         <i class="far fa-check-square"></i>
@@ -49,7 +50,7 @@
                 </div>
             </div>
         </div>
-
+3
         <h1 class="title">Current Active Trucks:</h1>
 
     </div>
@@ -61,10 +62,14 @@
         name: '',
         data() {
             return {
-
+                
             }
         },
-        computed: {},
+        computed: {
+            owner(){
+                return this.$store.state.owner
+            }
+        },
         methods: {}
     }
 

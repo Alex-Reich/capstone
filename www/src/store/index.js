@@ -110,7 +110,8 @@ export default new vuex.Store({
     login({commit, dispatch}, loginCredentials){
       auth.post('login', loginCredentials)
         .then(res=>{
-          commit('setOwner', res.data)
+          
+          commit('setOwner', res.data.data)
           router.push({name: 'OwnerProfile'})
         })
     },

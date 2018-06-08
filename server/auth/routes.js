@@ -27,21 +27,33 @@ router.post('/auth/register', (req, res) => {
 
 // Login as Owner
 router.post('/auth/login', (req, res) => {
+  console.log(req.body)
   Owners.findOne({
     username: req.body.username
   })
     .then(owner => {
-      if (!owner) {
-        return res.status(400).send(loginError)
-      }
-      if (!owner.validatePassword(req.body.password)) {
-        return res.status(400).send(loginError)
-      }
-      delete owner._doc.password
-      req.session.uid= owner._id
-      res.send(owner)
-    }).catch(err => {
-      res.status(400).send(loginError)
+      owner.validatePassword(req.body.password)
+        .then(valid => {
+          if (!valid) {
+            return res.status(400).send({ error: 'Invalid Email or Password' })
+          }
+          req.session.uid = owner.id;
+          owner.password = null
+          delete owner.password
+          res.send({
+            message: 'successfully logged in',
+            session: req.session.uid,
+            data: owner
+          })
+        })
+        .catch(err => {
+          res.status(400).send({ message: 'Invalid Email or Password' })
+        })
+
+
+    })
+    .catch(err => {
+      res.status(400).send({ message: 'No User' })
     })
 })
 

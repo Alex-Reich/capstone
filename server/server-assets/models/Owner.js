@@ -15,6 +15,7 @@ var geoLocationSchema = new Schema({
 // Food Truck 
 var foodtrucksSchema = new Schema({
   name: {type: String, required: true},
+  businessName: {type: String, required: true}
   truckPic:{type: String},
   menu: {type: String},
   hours: {type: String},

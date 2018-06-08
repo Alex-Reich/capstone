@@ -138,16 +138,18 @@ export default new vuex.Store({
       })
     },
     addTruck({commit, dispatch}, owner){
-      api.put('api/owners/'+owner._id, owner)
+      console.log(owner)
+      api.post('api/owners/'+owner._id, owner)
       .then (res=>{
         dispatch('getTrucks')
       })
     },
     getTrucks({commit, dispatch}){
+  
       api.get('api/owners')
       .then(res=>{
         commit('setTrucks', res.data)
-        router.push({name: "Search"})
+        // router.push({name: "Search"})
       })
     },
     viewTruck({commit, dispatch, state}, id){

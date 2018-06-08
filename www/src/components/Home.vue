@@ -80,6 +80,7 @@
           <div class="form-group row">
             <div class="col-sm-10 offset-sm-1 text-center">
               <select class="form-control" name="proximity" v-model="search.distance" placeholder="Radius">
+                  <option value="" disabled selected hidden>Radius</option>
                 <option>0-5 miles</option>
                 <option>5-10 miles</option>
                 <option>10-15 miles</option>
@@ -88,6 +89,7 @@
               <input class="form-control" type="search" placeholder="Zipcode" id="search-input" v-model="search.zipcode">
               <input class="form-control" type="search" placeholder="Truck Name" id="search-input" v-model="search.truckname">
               <select class="form-control" name="Cuisine" placeholder="Select Cuisine Type" v-model="search.cuisineType">
+                <option value="" disabled selected hidden>Please Choose...</option>
                 <option>Asian</option>
                 <option>Mexican</option>
                 <option>American</option>
@@ -117,10 +119,12 @@
 <script>
   import router from '../router'
   import search from './Search'
+  import ownerProfile from './OwnerProfile'
   export default {
     name: 'Home',
     components: {
-      search
+      search,
+      ownerProfile
     },
     mounted() {
       this.$store.dispatch('renderStartMap')
@@ -133,7 +137,7 @@
         },
         register: {
           username: '',
-          businessName:'',
+          businessName: '',
           email: '',
           password: '',
         },

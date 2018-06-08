@@ -50,7 +50,6 @@
                 </div>
             </div>
         </div>
-3
         <h1 class="title">Current Active Trucks:</h1>
 
     </div>

@@ -5,6 +5,13 @@ var schemaName = 'Owner'
 const SALT = 12
 var ObjectId = Schema.Types.ObjectId
 
+//geoLocation
+var geoLocationSchema = new Schema({
+  location:{
+    lat: {type: Number, required:true},
+    lng: {type: Number, requried:true}
+  }
+})
 // Food Truck 
 var foodtrucksSchema = new Schema({
   name: {type: String, required: true},
@@ -13,7 +20,7 @@ var foodtrucksSchema = new Schema({
   hours: {type: String},
   foodType: {type: String},
   // default location to their GPS location
-  location: {type: String},
+  location: [geoLocationSchema],
   description: {type: String},
   rating: {type: String, required: true, default: 0},
   value:{type: String, required: true, default: 0},

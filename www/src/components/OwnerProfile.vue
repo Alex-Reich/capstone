@@ -1,5 +1,5 @@
 <template>
-    <div class="ownerProf">
+    <div class="ownerProf" >
 
         <button class='btn btn-primary'>Edit Profile</button>
         <i class="far fa-check-square"></i>
@@ -71,4 +71,16 @@
 </script>
 
 <style>
+    .ownerProf {
+        background-color: orange;
+        color: white;
+    }
+
+    .main-bottom-style {
+        background-color: rgb(230, 220, 240)
+    }
+
+    .Title {
+        font-family: 'Cabin Sketch', cursive;
+    }
 </style>

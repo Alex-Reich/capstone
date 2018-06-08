@@ -74,7 +74,9 @@ export default new vuex.Store({
    foodtrucks: [],
    activeTruck: {},
    map:{},
-   userGeoLocation:{}
+   userGeoLocation:{},
+   //entering new truck
+   geoLocationTruck: {}
   },
   mutations:{
     /////////// Owner Mutations ////////////////
@@ -97,6 +99,9 @@ export default new vuex.Store({
     setUserGeoLoc(state,payload){
       state.userGeoLocation=payload
       console.log('this is the user geoloc: ',state.userGeoLocation)
+    }, 
+    setGeoTruckLocation(state, truckLoc){
+      state.geoLocationTruck = truckLoc
     }
   },
 

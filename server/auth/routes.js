@@ -47,13 +47,13 @@ router.post('/auth/login', (req, res) => {
           })
         })
         .catch(err => {
-          res.status(400).send({ message: 'Invalid Email or Password' })
+          res.status(400).send({ message: 'Invalid User or Password' })
         })
 
 
     })
     .catch(err => {
-      res.status(400).send({ message: 'No User' })
+      res.status(400).send({ message: 'Invalid User or Password' })
     })
 })
 

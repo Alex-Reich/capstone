@@ -103,7 +103,6 @@
       <input type="text" placeholder="State" v-model="geocode.state" required>
       <button type="submit">Submit</button>
     </form>
-  <search></search>
   </div>
 </template>
 

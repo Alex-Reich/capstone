@@ -77,6 +77,7 @@ export default new vuex.Store({
    userGeoLocation:{}
   },
   mutations:{
+    /////////// Owner Mutations ////////////////
     setOwner(state, owner){
       state.owner = owner
     },
@@ -89,6 +90,7 @@ export default new vuex.Store({
     setTrucks(state, trucks){
       state.foodtrucks = trucks
     },
+    /////////// Map Mutations ////////////////
     setMap(state,payload){
       console.log('You called the setMap mutation and didnt write it')
     },

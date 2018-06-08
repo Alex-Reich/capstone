@@ -50,7 +50,7 @@
                 </div>
             </div>
         </div>
-        <h1 class="title">Current Active Trucks:</h1>
+        <h1 class="title">Current Active Trucks:{{owner.foodtrucks[0].businessName}}</h1>
 
     </div>
 </template>

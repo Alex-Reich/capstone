@@ -136,7 +136,6 @@ import search from './Search'
           truckname: '',
           cuisineType:''
         },
-        query: '',
         userGeoLocation: {},
         geocode: {
           street: '',
@@ -166,10 +165,8 @@ import search from './Search'
         this.$store.dispatch('getGeoLocation')
       },
       convertGeoCode() {
-        this.query = this.geocode.street + ', ' + this.geocode.city + ', ' + this.geocode.state
         this.$store.dispatch('convertGeoCode', this.geocode)
         this.geocode = { street: '', city: '', state: '' }
-        this.query = ''
       }
     }    
   }

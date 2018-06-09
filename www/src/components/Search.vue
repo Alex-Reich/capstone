@@ -16,7 +16,21 @@
           boise:{
             lat: 43.6150,
             lng:-116.2023
-          }
+          },
+          markerCoordinates:[
+            {// taco bell garden city
+              latitude: 43.6491071,
+              longitude: -116.2810966
+            },
+            {// pie hole pizza boise
+              latitude: 43.616671,
+              longitude: -116.2027034
+            },
+            {// big judds meridian 
+              latitude: 43.5907617,
+              longitude: -116.3565662
+            },
+          ]
         }
       },
       mounted() {
@@ -26,9 +40,13 @@
           zoom: 13,
           center: new google.maps.LatLng(this.boise.lat,this.boise.lng)
         }
-        console.log('the Map options: ',options)
+        // console.log('the Map options: ',options)
         const map = new google.maps.Map(element,options);
-        console.log('the Map object created by Google: ',map)
+        // console.log('the Map object created by Google: ',map)
+        this.markerCoordinates.forEach((coord)=>{
+          const position = new google.maps.LatLng(coord.latitude,coord.longitude);
+          const marker = new google.maps.Marker({position,map})
+        })
       },
       computed: {
         userGeoLocation() {

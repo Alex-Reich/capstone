@@ -117,10 +117,10 @@ export default new vuex.Store({
         })
     },
     logout({ commit, dispatch }) {
-      auth.delete('/home')
+      auth.delete('logout')
         .then(res => {
           commit('deleteOwner')
-          router.push({ name: 'login' })
+          router.push({ name: 'Home' })
         })
     },
     register({ commit, dispatch }, userData) {

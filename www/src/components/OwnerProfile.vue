@@ -101,6 +101,7 @@
                 </div>
             </div>
         </div>
+        <button @click=logout()>logout</button>
         <h1 class="title">Current Active Trucks:</h1>
         <div v-for="truck in owner.foodtrucks">
             <button @click="deleteTruck">
@@ -123,9 +124,9 @@
                     businessName: '',
                     cuisine: '',
                     location: '',
-                    time: '',
+                    hours: '',
                     description: '',
-                    parentId: {}
+                    parentId: ''
                 }
             }
         },
@@ -141,7 +142,7 @@
         },
         methods: {
             addTruck() {
-                console.log(this.owner._id)
+                console.log(this.truck)
                 this.truck.parentId = this.owner._id
                 this.truck.businessName = this.owner.businessName
                 this.$store.dispatch('addTruck', this.truck)
@@ -151,6 +152,9 @@
             },
             ownerEdit(){
                 console.log('write me')
+            },
+            logout(){
+                this.$store.dispatch('logout')
             }
         }
     }

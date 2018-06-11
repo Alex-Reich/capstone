@@ -65,7 +65,7 @@ router.put('/api/owners/:id', (req, res) => {
       res.status(200).send({message: "Successfully updated owner info"})
     })
     .catch(err => {
-      res.status(400).send(err)
+      res.status(400).send({message: "Invalid Username or Password"})
     })
 })
 

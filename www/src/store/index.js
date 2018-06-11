@@ -155,8 +155,8 @@ export default new vuex.Store({
         console.log(res.data.message)
         commit('setOwner', owner._id)
       })
-      .catch(err => {
-        console.log(err)
+      .catch(res => {
+        console.log(res)
       })
     },
     addTruck({ commit, dispatch }, truck) {

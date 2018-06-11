@@ -129,6 +129,11 @@
                 }
             }
         },
+        mounted(){
+            if(!this.$store.state.owner._id){
+                router.push({name:'Home'})
+            }
+        },
         computed: {
             owner() {
                 return this.$store.state.owner
@@ -136,12 +141,16 @@
         },
         methods: {
             addTruck() {
+                console.log(this.owner._id)
                 this.truck.parentId = this.owner._id
                 this.truck.businessName = this.owner.businessName
                 this.$store.dispatch('addTruck', this.truck)
             },
             deleteTruck() {
                 this.$store.dispatch('deleteTruck', this.truck)
+            },
+            ownerEdit(){
+                console.log('write me')
             }
         }
     }

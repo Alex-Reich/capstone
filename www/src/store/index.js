@@ -110,7 +110,8 @@ export default new vuex.Store({
     login({ commit, dispatch }, loginCredentials) {
       auth.post('login', loginCredentials)
         .then(res => {
-
+          console.log('Successfully logged in')
+          console.log(res.data)
           commit('setOwner', res.data.data)
           router.push({ name: 'OwnerProfile' })
         })
@@ -128,6 +129,16 @@ export default new vuex.Store({
         .then(res => {
           commit('setOwner', res.data)
           router.push({ name: 'OwnerProfile' })
+        })
+    },
+    authenticate({ commit, dispatch }) {
+      auth.get('/authenticate')
+        .then(res => {
+          commit('setOwner', res.data)
+          router.push({ name: 'OwnerProfile' })
+        })
+        .catch(res => {
+          console.log(res)
         })
     },
     /////////////// The Owner Actions /////////////////////////

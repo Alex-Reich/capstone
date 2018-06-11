@@ -27,7 +27,6 @@ router.post('/auth/register', (req, res) => {
 
 // Login as Owner
 router.post('/auth/login', (req, res) => {
-  console.log(req.body)
   Owners.findOne({
     username: req.body.username
   })
@@ -37,9 +36,9 @@ router.post('/auth/login', (req, res) => {
           if (!valid) {
             return res.status(400).send({ error: 'Invalid Email or Password' })
           }
-          req.session.uid = owner.id;
-          owner.password = null
-          delete owner.password
+          delete owner._doc.password
+          req.session.uid = owner._id;
+          //owner.password = null
           res.send({
             message: 'successfully logged in',
             session: req.session.uid,
@@ -49,8 +48,6 @@ router.post('/auth/login', (req, res) => {
         .catch(err => {
           res.status(400).send({ message: 'Invalid User or Password' })
         })
-
-
     })
     .catch(err => {
       res.status(400).send({ message: 'Invalid User or Password' })

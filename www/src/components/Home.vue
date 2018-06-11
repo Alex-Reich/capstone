@@ -48,11 +48,11 @@
               <div class="modal-body">
                 <form v-on:submit.prevent="ownerRegister">
                   <div class="form-group">
-                    <input type="text" name="ownerRegister" v-model="register.username" class="form-control" id="formGroupExampleInput" placeholder="Username"
+                    <input type="text" name="username" v-model="register.username" class="form-control" id="formGroupExampleInput" placeholder="Username"
                       required>
                   </div>
                   <div class="form-group">
-                    <input type="text" name="ownerRegister" v-model="register.businessName" class="form-control" id="formGroupExampleInput" placeholder="Business Name"
+                    <input type="text" name="businessName" v-model="register.businessName" class="form-control" id="formGroupExampleInput" placeholder="Business Name"
                       required>
                   </div>
                   <div class="form-group">
@@ -157,6 +157,11 @@
           lat: 0,
           lng: 0
         }
+      }
+    },
+    mounted(){
+      if(!this.$store.state.owner._id){
+        this.$store.dispatch('authenticate')
       }
     },
     computed: {

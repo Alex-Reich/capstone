@@ -1,8 +1,5 @@
 <template>
     <div class="ownerProf">
-        <h1 class="title">Hello {{owner.username}}</h1>
-
-
         <i class="far fa-check-square"></i>
         <i class="far fa-address-card"></i>
         <i class="fas fa-dollar-sign"></i>
@@ -11,9 +8,52 @@
         <i class="far fa-stop-circle"></i>
         <i class="far fa-edit"></i>
 
-        <!-- Check in Modal -->
-        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#checkinModal">Add Truck</button>
-        <div class="modal fade" id="checkinModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <h1 class="title">Hello {{owner.username}}</h1>
+
+        <!-- Edit Profil Modal -->
+        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
+        <div class="modal fade" id="editOwnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edit Profile</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form v-on:submit.prevent="editOwner">
+                  <div class="form-group">
+                      <!-- v-model="ownerEdit.username" -->
+                    <input type="text" name="ownerEdit"  class="form-control" id="formGroupExampleInput" placeholder="Username"
+                      required>
+                  </div>
+                  <div class="form-group">
+                      <!-- v-model="ownerEdit.businessName" -->
+                    <input type="text" name="ownerRegister"  class="form-control" id="formGroupExampleInput" placeholder="Business Name"
+                      required>
+                  </div>
+                  <div class="form-group">
+                      <!-- v-model="ownerEdit.email" -->
+                    <input type="text" name="email"  class="form-control" id="formGroupExampleInput" placeholder="email">
+                  </div>
+                  <div class="form-group">
+                      <!-- v-model="register.password" -->
+                    <input type="text" name="password"  class="form-control" id="formGroupExampleInput" placeholder="Password">
+                  </div>
+                  <button type="button" @click="ownerEdit" class="btn btn-primary" data-dismiss="modal">Edit Profile</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add Truck Modal -->
+        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#addTruckModal">Add Truck</button>
+        <div class="modal fade" id="addTruckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -25,7 +65,6 @@
                     <div class="modal-body">
                         <form v-on: submit.prevent="addTruck">
                             <div class="form-group">
-                                <!-- add v-model="test.test" info into input -->
                                 <input v-model="truck.name" type="text" name="truckName" class="form-control" id="formGroupExampleInput" placeholder="Truck Name"
                                     required>
                             </div>

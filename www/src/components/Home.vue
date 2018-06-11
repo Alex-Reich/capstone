@@ -79,8 +79,8 @@
         <form @submit.prevent="getTrucks">
           <div class="form-group row">
             <div class="col-sm-10 offset-sm-1 text-center">
-              <select class="form-control" name="proximity" v-model="search.distance" placeholder="Radius">
-                  <option value="" disabled selected hidden>Radius</option>
+              <select class="form-control" name="proximity" v-model="search.distance">
+                <option value="" disabled selected hidden>Search by Radius</option>
                 <option>0-5 miles</option>
                 <option>5-10 miles</option>
                 <option>10-15 miles</option>
@@ -88,8 +88,8 @@
               </select>
               <input class="form-control" type="search" placeholder="Zipcode" id="search-input" v-model="search.zipcode">
               <input class="form-control" type="search" placeholder="Truck Name" id="search-input" v-model="search.truckname">
-              <select class="form-control" name="Cuisine" placeholder="Select Cuisine Type" v-model="search.cuisineType">
-                <option value="" disabled selected hidden>Please Choose...</option>
+              <select class="form-control" name="Cuisine" v-model="search.cuisineType">
+                <option value="" disabled selected hidden>Search by Cuisine Type</option>
                 <option>Asian</option>
                 <option>Mexican</option>
                 <option>American</option>

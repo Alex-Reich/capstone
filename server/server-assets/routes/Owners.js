@@ -31,10 +31,10 @@ router.get('/api/trucks',(req,res)=>{
 })
 
 // Get owners trucks
-router.get('/api/:id/trucks', (req,res)=>{
+router.get('/api/owner/:id/trucks', (req,res)=>{
   Owners.findById(req.params.id)
-  .then(res=>{
-    res.status(200).send(res.data.foodtrucks)
+  .then(owner=>{
+    res.status(200).send(owner.foodtrucks)
   })
   .catch(err=>{
     res.status(400).send(err)
@@ -46,7 +46,6 @@ router.put('/api/owners/:id/trucks', (req, res) => {
   Owners.findById(req.params.id)
     .then(owner => {
       owner.foodtrucks.addToSet(req.body)
-      console.log('this should have a truck in it', owner.foodtrucks)
       owner.save()
         .then(() => {
           console.log("Successfully Added Truck")
@@ -81,7 +80,7 @@ router.delete('/api/owners/:id/', (req, res) => {
 })
 
 // Delete Truck
-router.delete('/api/owners/:id/trucks/:truckid', (req, res) => {
+router.delete('/api/owner/:id/trucks/:truckid', (req, res) => {
   Owners.findById(req.params.id)
     .then(owner => {
       var truck = owner.foodtrucks.id(req.params.truckid)

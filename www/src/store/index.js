@@ -92,6 +92,9 @@ export default new vuex.Store({
     setTrucks(state, trucks) {
       state.foodtrucks = trucks
     },
+    updateOwnerTrucks(state, trucks){
+      state.owner.foodtrucks=trucks
+    },
     /////////// Map Mutations ////////////////
     setMap(state, payload) {
       console.log('You called the setMap mutation and didnt write it')
@@ -160,18 +163,24 @@ export default new vuex.Store({
       })
     },
     addTruck({ commit, dispatch }, truck) {
-      console.log(truck)
-      api.put('api/owners/' + truck.parentId+ '/trucks', truck)
-        .then(res => {
-          dispatch('getTrucks', truck.parentId)
+      var query = formatGeoCodeString(truck.location)
+      geoCode.get('/json?address=' + query + googleApiKey)
+        .then(res=>{
+          truck.location = res.data.results[0].geometry.location
+          api.put('api/owners/' + truck.parentId+ '/trucks', truck)
+            .then(res => {
+              dispatch('getTrucks', truck.parentId)
+            })
+            .catch(err => {
+              console.log(err)
+            })
         })
-        .catch(err => {
+        .catch(err=>{
           console.log(err)
         })
     },
     getAllTrucks({ commit, dispatch, state}) {
-      var ownerid= state.owner._id
-      api.get('api/'+ownerid+'/trucks')
+      api.get('api/trucks')
         .then(res => {
           console.log(res)
           commit('setTrucks', res)
@@ -179,9 +188,12 @@ export default new vuex.Store({
         })
     },
     getTrucks({commit,dispatch}, ownerid){
-      api.get('api/'+ownerid+'/trucks')
+      api.get('api/owner/'+ownerid+'/trucks')
         .then(res=>{
-          console.log(res)
+          commit('updateOwnerTrucks',res.data)
+        })
+        .catch(err=>{
+          console.log(err)
         })
     },
     viewTruck({ commit, dispatch, state }, id) {
@@ -191,9 +203,9 @@ export default new vuex.Store({
         })
     },
     deleteTruck({ commit, dispatch, state }, id) {
-      api.delete('/api/owner/' + state.owner._id + 'trucks/' + id)
+      api.delete('/api/owner/' + state.owner._id + '/trucks/' + id)
         .then(res => {
-          dispatch('getTrucks', id)
+          dispatch('getTrucks', state.owner._id)
         })
         .catch(err => {
           console.log(err)

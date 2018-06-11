@@ -22,22 +22,22 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form v-on:submit.prevent="editOwner">
+                        <form v-on:submit.prevent="ownerEdit">
                             <div class="form-group">
-                                <!-- v-model="ownerEdit.username" -->
-                                <input type="text" name="ownerEdit" class="form-control" id="formGroupExampleInput" placeholder="Username" required>
+                                <!-- v-model="newowner.username" -->
+                                <input v-model="newowner.username" type="text" name="username" class="form-control" id="formGroupExampleInput" placeholder="Username" required>
                             </div>
                             <div class="form-group">
-                                <!-- v-model="ownerEdit.businessName" -->
-                                <input type="text" name="ownerRegister" class="form-control" id="formGroupExampleInput" placeholder="Business Name" required>
+                                <!-- v-model="newowner.businessName" -->
+                                <input v-model="newowner.businessName" type="text" name="businessName" class="form-control" id="formGroupExampleInput" placeholder="Business Name" required>
                             </div>
                             <div class="form-group">
-                                <!-- v-model="ownerEdit.email" -->
-                                <input type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="email">
+                                <!-- v-model="newowner.email" -->
+                                <input v-model="newowner.email" type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="email">
                             </div>
                             <div class="form-group">
-                                <!-- v-model="register.password" -->
-                                <input type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Password">
+                                <!-- v-model="newowner.password" -->
+                                <input v-model="newowner.password" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Password">
                             </div>
                             <button type="button" @click="ownerEdit" class="btn btn-primary" data-dismiss="modal">Edit Profile</button>
                         </form>
@@ -130,6 +130,12 @@
                     hours: '',
                     description: '',
                     parentId: ''
+                },
+                newowner:{
+                    username:'',
+                    businessName:'',
+                    email:'',
+                    password:''
                 }
             }
         },
@@ -153,8 +159,12 @@
             deleteTruck() {
                 this.$store.dispatch('deleteTruck', this.truck)
             },
-            ownerEdit() {
-                console.log('write me')
+            ownerEdit(owner) {
+                this.owner.username = this.newowner.username
+                this.owner.businessName = this.newowner.businessName
+                this.owner.email = this.newowner.email
+                this.owner.password = this.newowner.password
+                this.$store.dispatch('updateOwner', this.owner)
             },
             logout() {
                 this.$store.dispatch('logout')

@@ -62,7 +62,7 @@ router.put('/api/owners/:id/trucks', (req, res) => {
 router.put('/api/owners/:id', (req, res) => {
   Owners.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(owner => {
-      res.send(owner)
+      res.status(200).send({message: "Successfully updated owner info"})
     })
     .catch(err => {
       res.status(400).send(err)

@@ -143,10 +143,21 @@ export default new vuex.Store({
     },
     /////////////// The Owner Actions /////////////////////////
     deleteOwner({ commit, dispatch }, id) {
-      api.delete('api/owner/' + id)
+      api.delete('api/owners/' + id)
         .then(res => {
           commit('setOwner', id)
         })
+    },
+    updateOwner({commit, dispatch}, owner){
+      console.log(owner)
+      api.put('api/owners/' + owner._id, owner)
+      .then(res=>{
+        console.log(res.data.message)
+        commit('setOwner', owner._id)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     },
     addTruck({ commit, dispatch }, truck) {
       console.log(truck)

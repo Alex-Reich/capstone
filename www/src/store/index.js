@@ -149,20 +149,28 @@ export default new vuex.Store({
         })
     },
     addTruck({ commit, dispatch }, truck) {
-      api.post('api/owners/' + truck.parentId+ '/trucks', truck)
+      console.log(truck)
+      api.put('api/owners/' + truck.parentId+ '/trucks', truck)
         .then(res => {
-          dispatch('getTrucks')
+          dispatch('getTrucks', truck.parentId)
         })
         .catch(err => {
           console.log(err)
         })
     },
-    getTrucks({ commit, dispatch }) {
-
-      api.get('api/owners')
+    getAllTrucks({ commit, dispatch, state}) {
+      var ownerid= state.owner._id
+      api.get('api/'+ownerid+'/trucks')
         .then(res => {
-          commit('setTrucks', res.data)
+          console.log(res)
+          commit('setTrucks', res)
           // router.push({name: "Search"})
+        })
+    },
+    getTrucks({commit,dispatch}, ownerid){
+      api.get('api/'+ownerid+'/trucks')
+        .then(res=>{
+          console.log(res)
         })
     },
     viewTruck({ commit, dispatch, state }, id) {

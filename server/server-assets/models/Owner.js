@@ -8,8 +8,8 @@ var ObjectId = Schema.Types.ObjectId
 //geoLocation
 var geoLocationSchema = new Schema({
   location:{
-    lat: {type: Number, required:true},
-    lng: {type: Number, requried:true}
+    lat: {type: Number, required:true, default: 43.6150},
+    lng: {type: Number, requried:true, default: -116.2023}
   }
 })
 // Food Truck 

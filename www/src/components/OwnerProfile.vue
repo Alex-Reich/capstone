@@ -120,11 +120,12 @@
             return {
                 truck: {
                     name: '',
+                    businessName: '',
                     cuisine: '',
                     location: '',
                     time: '',
-                    description: ''
-
+                    description: '',
+                    parentId: {}
                 }
             }
         },
@@ -135,8 +136,9 @@
         },
         methods: {
             addTruck() {
-                var ownerid = owner.id
-                this.$store.dispatch('addTruck', this.owner.id)
+                this.truck.parentId = this.owner._id
+                this.truck.businessName = this.owner.businessName
+                this.$store.dispatch('addTruck', this.truck)
             },
             deleteTruck() {
                 this.$store.dispatch('deleteTruck', this.truck)

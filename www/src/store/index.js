@@ -33,12 +33,12 @@ var geoCode = axios.create({
 var googleApiKey = '?key=AIzaSyCp89R6XqYSrTub4SbaoOnKj2IQ-iC2RoU'
 
 ////// this function is for formatting an object that is an address into a string that can be sent to google geocode.
-function formatGeoCodeString(obj){
-  var outQuery =''
+function formatGeoCodeString(obj) {
+  var outQuery = ''
   var commaCount = 0
-  for(var key in obj){
+  for (var key in obj) {
     var value = obj[key].split(' ').join('+')
-    outQuery+= commaCount<2 ? value+',+' : value
+    outQuery += commaCount < 2 ? value + ',+' : value
     commaCount++
   }
   return outQuery
@@ -70,127 +70,129 @@ function formatGeoCodeString(obj){
 
 export default new vuex.Store({
   state: {
-   owner: {},
-   foodtrucks: [],
-   activeTruck: {},
-   map:{},
-   userGeoLocation:{},
-   //entering new truck
-   geoLocationTruck: {}
+    owner: {},
+    foodtrucks: [],
+    activeTruck: {},
+    map: {},
+    userGeoLocation: {},
+    //entering new truck
+    geoLocationTruck: {}
   },
-  mutations:{
+  mutations: {
     /////////// Owner Mutations ////////////////
-    setOwner(state, owner){
+    setOwner(state, owner) {
       state.owner = owner
     },
-    deleteOwner(state){
+    deleteOwner(state) {
       state.owner = {}
     },
-    setActiveTruck(state, truck){
+    setActiveTruck(state, truck) {
       state.activeTruck = truck
     },
-    setTrucks(state, trucks){
+    setTrucks(state, trucks) {
       state.foodtrucks = trucks
     },
     /////////// Map Mutations ////////////////
-    setMap(state,payload){
+    setMap(state, payload) {
       console.log('You called the setMap mutation and didnt write it')
     },
-    setUserGeoLoc(state,payload){
-      state.userGeoLocation=payload
-      console.log('this is the user geoloc: ',state.userGeoLocation)
-    }, 
-    setGeoTruckLocation(state, truckLoc){
+    setUserGeoLoc(state, payload) {
+      state.userGeoLocation = payload
+      console.log('this is the user geoloc: ', state.userGeoLocation)
+    },
+    setGeoTruckLocation(state, truckLoc) {
       state.geoLocationTruck = truckLoc
     }
   },
 
-  actions:{
+  actions: {
     //////////////////// The AUTH Actions ///////////////////
-    login({commit, dispatch}, loginCredentials){
+    login({ commit, dispatch }, loginCredentials) {
       auth.post('login', loginCredentials)
-        .then(res=>{
-          
+        .then(res => {
+
           commit('setOwner', res.data.data)
-          router.push({name: 'OwnerProfile'})
+          router.push({ name: 'OwnerProfile' })
         })
     },
-    logout({commit, dispatch}){
+    logout({ commit, dispatch }) {
       auth.delete('/home')
-      .then(res=>{
-        commit('deleteOwner')
-        router.push({name: 'login'})
-      })
+        .then(res => {
+          commit('deleteOwner')
+          router.push({ name: 'login' })
+        })
     },
-    register({commit, dispatch}, userData){
+    register({ commit, dispatch }, userData) {
       console.log(userData)
       auth.post('register', userData)
-      .then(res=>{
-        commit('setOwner', res.data)
-        router.push({name: 'OwnerProfile'})
-      })
+        .then(res => {
+          commit('setOwner', res.data)
+          router.push({ name: 'OwnerProfile' })
+        })
     },
     /////////////// The Owner Actions /////////////////////////
-    deleteOwner({commit, dispatch}, id){
-      api.delete('api/owner/'+id)
-      .then(res=>{
-        commit('setOwner', id)
-      })
+    deleteOwner({ commit, dispatch }, id) {
+      api.delete('api/owner/' + id)
+        .then(res => {
+          commit('setOwner', id)
+        })
     },
-    addTruck({commit, dispatch}, owner){
-      console.log(owner)
-      api.post('api/owners/'+owner._id, owner)
-      .then (res=>{
-        dispatch('getTrucks')
-      })
+    addTruck({ commit, dispatch }, truck) {
+      api.post('api/owners/' + truck.parentId+ '/trucks', truck)
+        .then(res => {
+          dispatch('getTrucks')
+        })
+        .catch(err => {
+          console.log(err)
+        })
     },
-    getTrucks({commit, dispatch}){
-  
+    getTrucks({ commit, dispatch }) {
+
       api.get('api/owners')
-      .then(res=>{
-        commit('setTrucks', res.data)
-        // router.push({name: "Search"})
-      })
+        .then(res => {
+          commit('setTrucks', res.data)
+          // router.push({name: "Search"})
+        })
     },
-    viewTruck({commit, dispatch, state}, id){
-      api.get('api/trucks/'+ id)
-      .then(res=>{
-        commit('setActiveTruck', res.data)
-      })
+    viewTruck({ commit, dispatch, state }, id) {
+      api.get('api/trucks/' + id)
+        .then(res => {
+          commit('setActiveTruck', res.data)
+        })
     },
-    deleteTruck({commit, dispatch, state}, id){
-      api.delete('/api/owner/'+state.owner._id+'trucks/'+id)
-        .then(res=>{
+    deleteTruck({ commit, dispatch, state }, id) {
+      api.delete('/api/owner/' + state.owner._id + 'trucks/' + id)
+        .then(res => {
           dispatch('getTrucks', id)
         })
-        .catch(err=>{
+        .catch(err => {
           console.log(err)
         })
     },
     ////////////////////// Google Map Actions /////////////////////
-    getMap({commit,dispatch},payload){
+    getMap({ commit, dispatch }, payload) {
       console.log(payload.query)
-      api.post('/api/google',payload)
-        .then(res=>{
+      api.post('/api/google', payload)
+        .then(res => {
           console.log(res)
         })
     },
-    getGeoLocation({commit,dispatch}){
+    getGeoLocation({ commit, dispatch }) {
       geoLoc.post(googleApiKey)
-        .then(res=>{
-          commit('setUserGeoLoc',res.data.location)
+        .then(res => {
+          commit('setUserGeoLoc', res.data.location)
         })
     },
-    convertGeoCode({commit,dispatch},payload){
-      var query=formatGeoCodeString(payload)
-      geoCode.get('/json?address='+query+googleApiKey)
-        .then(res=>{
+    convertGeoCode({ commit, dispatch }, payload) {
+      var query = formatGeoCodeString(payload)
+      geoCode.get('/json?address=' + query + googleApiKey)
+        .then(res => {
           console.log(res.data.results[0].geometry.location)
           console.log('geocode was converted to the above but you still need to do something with it')
         })
     },
-    renderStartMap({commit,dispatch,state}){
-      
+    renderStartMap({ commit, dispatch, state }) {
+
       // if (handlePermission()) {
       //   navigator.permissions.query({ name: 'geolocation' }).then(res => {
       //     switch (res.state) {

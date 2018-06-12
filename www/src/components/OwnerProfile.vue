@@ -87,10 +87,10 @@
 
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span v-model="truck.time" class="input-group-text" id="">Open from:</span>
+                                    <span v-model="truck.hours" class="input-group-text" id="">Open from:</span>
                                 </div>
                                 <input type="text" class="form-control">
-                                <span v-model="truck.time" class="input-group-text" id="">to:</span>
+                                <span v-model="truck.hours" class="input-group-text" id="">to:</span>
                                 <input type="text" class="form-control">
                             </div>
                             <br>
@@ -109,8 +109,11 @@
         <div v-for="truck in owner.foodtrucks">
 
     <h2>{{truck.name}}<button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button></h2>
-    <p>{{truck.location}}</p>
-
+    <ul>
+    <li>{{truck.location}}</li>
+    <li>{{truck.hours}}</li>
+    <li>{{truck.description}}</li>
+    </ul>
         </div>
         
     </div>

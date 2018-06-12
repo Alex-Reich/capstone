@@ -121,7 +121,6 @@
                 <li>{{truck.description}}</li>
             </ul>
 
-<<<<<<< HEAD
             <button @click="deleteTruck(truck)">
                 <i class="far fa-trash-alt cardIcon"></i>
             </button>
@@ -177,7 +176,6 @@
                                 </div>
                             </form>
                         </div>
-=======
 <button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button>
     <!-- Edit Truck Modal -->
         <button type="button" class="btn btn-outline-dark mb-2" data-toggle="modal" data-target="#editTruckModal"><i class="far fa-edit"></i></button>
@@ -225,7 +223,6 @@
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                             </div>
                         </form>
->>>>>>> 649a937511ea56f2e5eec24a742cf153b0e0b255
                     </div>
                 </div>
             </div>
@@ -257,14 +254,6 @@
                     description: '',
                     parentId: ''
                 },
-<<<<<<< HEAD
-                newowner: {
-                    username: '',
-                    businessName: '',
-                    email: '',
-                    password: ''
-                }
-=======
                 newowner:{
                     username:'',
                     businessName:'',
@@ -286,7 +275,6 @@
                     parentId: ''
                 },
                 
->>>>>>> 649a937511ea56f2e5eec24a742cf153b0e0b255
             }
         },
         mounted() {
@@ -308,11 +296,6 @@
             deleteTruck(truck) {
                 this.$store.dispatch('deleteTruck', truck._id)
             },
-<<<<<<< HEAD
-            editTruck(truck) {
-
-                this.$store.dispatch('updateTruck')
-=======
             editTruck(truck){
                 this.truck.parentId = this.truck._id
                 this.truck.name = this.newtruck.name
@@ -322,7 +305,6 @@
                 this.truck.hours = this.newtruck.hours
                 this.truck.description = this.newtruck.description 
                 this.$store.dispatch('editTruck', this.truck)
->>>>>>> 649a937511ea56f2e5eec24a742cf153b0e0b255
             },
             ownerEdit(owner) {
                 this.owner.username = this.newowner.username

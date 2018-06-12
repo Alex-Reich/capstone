@@ -109,9 +109,14 @@
         <div v-for="truck in owner.foodtrucks">
 
     <h2>{{truck.name}}<button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button></h2>
+    <p>{{truck.location}}</p>
 
         </div>
+<<<<<<< HEAD
         
+=======
+        <!-- {{owner}} -->
+>>>>>>> 43bc1b89564323e857efbc4092387c0b9e41ad55
     </div>
 </template>
 

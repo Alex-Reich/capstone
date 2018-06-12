@@ -111,6 +111,7 @@
             </button>
             <h1>{{truck.name}}</h1>
         </div>
+        {{owner}}
     </div>
 </template>
 

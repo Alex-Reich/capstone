@@ -168,7 +168,7 @@ export default new vuex.Store({
         .then(res=>{
           truck.location = res.data.results[0].geometry.location
           api.put('api/owners/' + truck.parentId+ '/trucks', truck)
-            .then(res => {
+            .then(res=> {
               dispatch('getTrucks', truck.parentId)
             })
             .catch(err => {

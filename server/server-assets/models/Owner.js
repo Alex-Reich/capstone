@@ -19,7 +19,7 @@ var foodtrucksSchema = new Schema({
   truckPic:{type: String},
   menu: {type: Array},
   hours: {type: String},
-  foodType: {type: String},
+  cuisine: {type: String},
   // default location to their GPS location
   location: [geoLocationSchema],
   address: {type: String},

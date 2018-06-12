@@ -102,13 +102,7 @@
         </form>
       </div>
     </div>
-    <button @click="getGeoLocation">Geo</button>
-    <form @submit.prevent="convertGeoCode">
-      <input type="text" placeholder="Address" v-model="geocode.street" required>
-      <input type="text" placeholder="City" v-model="geocode.city" required>
-      <input type="text" placeholder="State" v-model="geocode.state" required>
-      <button type="submit">Submit</button>
-    </form>
+    
   </div>
 </template>
 
@@ -175,9 +169,7 @@
       getTrucks() {
         this.$store.dispatch('getTrucks', this.search)
       },
-      getGeoLocation() {
-        this.$store.dispatch('getGeoLocation')
-      },
+      
       convertGeoCode() {
         this.$store.dispatch('convertGeoCode', this.geocode)
         this.geocode = { street: '', city: '', state: '' }

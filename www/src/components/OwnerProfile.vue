@@ -1,5 +1,7 @@
 <template>
+<div>
     <div class="ownerProf">
+        <div class="profIcon d-flex">
         <i class="far fa-check-square"></i>
         <i class="far fa-address-card"></i>
         <i class="fas fa-dollar-sign"></i>
@@ -7,11 +9,13 @@
         <i class="far fa-plus-square"></i>
         <i class="far fa-stop-circle"></i>
         <i class="far fa-edit"></i>
-
+     
+        <button class="btn btn-outline-light ml-auto" @click=logout()>logout</button>
+      </div>
         <h1 class="title">Hello {{owner.username}}</h1>
 
         <!-- Edit Profil Modal -->
-        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
+        <button type="button" class="btn btn-outline-light mb-2" data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
         <div class="modal fade" id="editOwnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -24,19 +28,15 @@
                     <div class="modal-body">
                         <form v-on:submit.prevent="ownerEdit">
                             <div class="form-group">
-                                <!-- v-model="newowner.username" -->
                                 <input v-model="newowner.username" type="text" name="username" class="form-control" id="formGroupExampleInput" placeholder="Username" required>
                             </div>
                             <div class="form-group">
-                                <!-- v-model="newowner.businessName" -->
                                 <input v-model="newowner.businessName" type="text" name="businessName" class="form-control" id="formGroupExampleInput" placeholder="Business Name" required>
                             </div>
                             <div class="form-group">
-                                <!-- v-model="newowner.email" -->
                                 <input v-model="newowner.email" type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="email">
                             </div>
                             <div class="form-group">
-                                <!-- v-model="newowner.password" -->
                                 <input v-model="newowner.password" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Password">
                             </div>
                             <button type="button" @click="ownerEdit" class="btn btn-primary" data-dismiss="modal">Edit Profile</button>
@@ -47,10 +47,11 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
-
+<div>
         <!-- Add Truck Modal -->
-        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#addTruckModal">Add Truck</button>
+        <button type="button" class="btn btn-outline-dark mt-2" data-toggle="modal" data-target="#addTruckModal">Add Truck</button>
         <div class="modal fade" id="addTruckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -102,14 +103,13 @@
                     </div>
                 </div>
             </div>
+            </div>
         </div>
-        <button @click=logout()>logout</button>
-        <h1 class="title">Current Active Trucks:</h1>
+        <h3 class="title">Current Active Trucks:</h3>
         <div v-for="truck in owner.foodtrucks">
-            <button @click="deleteTruck(truck)">
-                <i class="far fa-minus-square"></i>
-            </button>
-            <h1>{{truck.name}}</h1>
+
+    <h2>{{truck.name}}<button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button></h2>
+
         </div>
         {{owner}}
     </div>
@@ -182,6 +182,7 @@
     .ownerProf {
         background-color: orange;
         color: white;
+        border-bottom: 2px solid black;
     }
 
     .main-bottom-style {
@@ -191,4 +192,5 @@
     .title {
         font-family: 'Cabin Sketch', cursive;
     }
+
 </style>

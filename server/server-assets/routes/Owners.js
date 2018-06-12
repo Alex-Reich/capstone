@@ -14,31 +14,31 @@ router.get('/api/owners', (req, res) => {
 })
 
 // Get all trucks so their positions can be added to the map
-router.get('/api/trucks',(req,res)=>{
+router.get('/api/trucks', (req, res) => {
   Owners.find(req.query)
-    .then(owners=>{
-      var truckArray=[]
-      owners.forEach(owner=>{
-        owner.foodtrucks.map(truck=>{
+    .then(owners => {
+      var truckArray = []
+      owners.forEach(owner => {
+        owner.foodtrucks.map(truck => {
           truckArray.push(truck)
         })
       })
       res.status(200).send(truckArray)
     })
-    .catch(err=>{
+    .catch(err => {
       res.status(400).send(err)
     })
 })
 
 // Get owners trucks
-router.get('/api/owner/:id/trucks', (req,res)=>{
+router.get('/api/owner/:id/trucks', (req, res) => {
   Owners.findById(req.params.id)
-  .then(owner=>{
-    res.status(200).send(owner.foodtrucks)
-  })
-  .catch(err=>{
-    res.status(400).send(err)
-  })
+    .then(owner => {
+      res.status(200).send(owner.foodtrucks)
+    })
+    .catch(err => {
+      res.status(400).send(err)
+    })
 })
 
 // Add a truck to an owner
@@ -57,14 +57,14 @@ router.put('/api/owners/:id/trucks', (req, res) => {
     })
 })
 
-// Edit Truck (Replaces entire Owner array)
+// Edit Owner 
 router.put('/api/owners/:id', (req, res) => {
   Owners.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(owner => {
-      res.status(200).send({message: "Successfully updated owner info"})
+      res.status(200).send({ message: "Successfully updated owner info" })
     })
     .catch(err => {
-      res.status(400).send({message: "Invalid Username or Password"})
+      res.status(400).send({ message: "Invalid Username or Password" })
     })
 })
 
@@ -79,19 +79,34 @@ router.delete('/api/owners/:id/', (req, res) => {
     })
 })
 
-// Delete Truck
-router.delete('/api/owner/:id/trucks/:truckid', (req, res) => {
+// Edit Truck
+router.put('/api/owners/:id/trucks/:tid', (req, res) => {
   Owners.findById(req.params.id)
     .then(owner => {
-      var truck = owner.foodtrucks.id(req.params.truckid)
-      truck.remove()
+      var truck = owner.foodtrucks.findByIdAndUpdate(req.params.tid, req.body)
       owner.save()
-      .then(() =>{
-        res.send("Successfully Deleted Truck")
-      })
-      .catch(err => {
-        res.status(400).send(err)
-      })
+        .then(() => {
+          res.send("Successfully Edited Truck")
+        })
+        .catch(err => {
+          res.status(400).send(err)
+        })
     })
-})
-module.exports = { router }
+
+  // Delete Truck
+  router.delete('/api/owner/:id/trucks/:truckid', (req, res) => {
+    Owners.findById(req.params.id)
+      .then(owner => {
+        var truck = owner.foodtrucks.id(req.params.truckid)
+        truck.remove()
+        owner.save()
+          .then(() => {
+            res.send("Successfully Deleted Truck")
+          })
+          .catch(err => {
+            res.status(400).send(err)
+          })
+      })
+  })
+  module.exports = { router }
+

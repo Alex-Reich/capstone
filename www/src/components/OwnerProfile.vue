@@ -78,11 +78,11 @@
                             </select>
                             <br>
                             <div class="form-group">
-                                <input v-model="truck.location" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
+                                <input v-model="truck.location.street" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
                             </div>
                             <br>
                             <div class="form-group">
-                                <input v-model="truck.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
+                                <input v-model="truck.location.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
                             </div>
 
                             <div class="input-group">

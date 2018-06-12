@@ -130,9 +130,9 @@
                     <div class="modal-body">
                         <form v-on:submit.prevent="editTruck">
                             <div class="form-group">
-                                <input type="text" v-model="truck.name" name="truckname" class="form-control" id="formGroupExampleInput" placeholder="Truck Name" required>
+                                <input type="text" v-model="newtruck.name" name="truckname" class="form-control" id="formGroupExampleInput" placeholder="Truck Name" required>
                             </div>
-                                <select v-model="truck.cuisine" class="form-control" name="Cuisine" placeholder="Select Cuisine Type">
+                                <select v-model="newtruck.cuisine" class="form-control" name="Cuisine" placeholder="Select Cuisine Type">
                                 <option value="" disabled selected hidden>Please Choose...</option>
                                 <option>Asian</option>
                                 <option>Mexican</option>
@@ -142,21 +142,21 @@
                                 <option>Other</option>
                             </select>
                             <div class="form-group">
-                                <input v-model="truck.location.street" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
+                                <input v-model="newtruck.location.street" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
                             </div>
                             <div class="form-group">
-                                <input v-model="truck.location.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
+                                <input v-model="newtruck.location.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
                             </div>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span v-model="truck.time" class="input-group-text" id="">Open from:</span>
+                                    <span v-model="newtruck.hours" class="input-group-text" id="">Open from:</span>
                                 </div>
                                 <input type="text" class="form-control">
-                                <span v-model="truck.time" class="input-group-text" id="">to:</span>
+                                <span v-model="newtruck.hours" class="input-group-text" id="">to:</span>
                                 <input type="text" class="form-control">
                             </div>
                             <br>
-                            <input v-model="truck.description" type="text" name="description" class="form-control" id="formGroupExampleInput" placeholder="Description">
+                            <input v-model="newtruck.description" type="text" name="description" class="form-control" id="formGroupExampleInput" placeholder="Description">
                             <div class="modal-footer">
                                 <button type="button" @click="editTruck" class="btn btn-primary" data-dismiss="modal">Edit Truck</button>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -198,7 +198,22 @@
                     businessName:'',
                     email:'',
                     password:''
-                }
+                },
+                newtruck:{
+                    name: '',
+                    businessName:'',
+                    cuisine: '',
+                    location: {
+                        street:'',
+                        city:'',
+                        state: 'ID'
+                    },
+                    city:'',
+                    hours: '',
+                    description: '',
+                    parentId: ''
+                },
+                
             }
         },
         mounted() {
@@ -221,8 +236,14 @@
                 this.$store.dispatch('deleteTruck', truck._id)
             },
             editTruck(truck){
-
-                this.$store.dispatch('updateTruck')
+                this.truck.parentId = this.truck._id
+                this.truck.name = this.newtruck.name
+                this.truck.cuisine = this.newtruck.cuisine
+                this.truck.location.street = this.newtruck.location.street
+                this.truck.location.city = this.newtruck.location.city
+                this.truck.hours = this.newtruck.hours
+                this.truck.description = this.newtruck.description 
+                this.$store.dispatch('editTruck', this.truck)
             },
             ownerEdit(owner) {
                 this.owner.username = this.newowner.username

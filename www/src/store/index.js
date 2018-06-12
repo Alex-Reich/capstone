@@ -202,6 +202,16 @@ export default new vuex.Store({
           commit('setActiveTruck', res.data)
         })
     },
+    editTruck({commit, dispatch, state}, truck){
+      api.put('api/owners/'+truck.parentId+'/trucks/'+truck._id)
+      .then(res=>{
+        dispatch('getTrucks', truck.parentId)
+      })
+      .catch(err=>{
+        console.log(err)
+      })
+    },
+
     deleteTruck({ commit, dispatch, state }, id) {
       api.delete('/api/owner/' + state.owner._id + '/trucks/' + id)
         .then(res => {

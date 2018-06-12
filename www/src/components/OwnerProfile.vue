@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <input v-model="truck.location" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
                             </div>
-                            <br>
+                            
                             <div class="form-group">
                                 <input v-model="truck.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
                             </div>
@@ -111,7 +111,7 @@
     <h2>{{truck.name}}<button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button></h2>
 
         </div>
-        {{owner}}
+        
     </div>
 </template>
 

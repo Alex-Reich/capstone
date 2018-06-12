@@ -109,7 +109,11 @@
         <div v-for="truck in owner.foodtrucks">
 
     <h2>{{truck.name}}</h2>
-    <p>{{truck.location}}</p>
+    <ul>
+    <li>{{truck.location}}</li>
+    <li>{{truck.hours}}</li>
+    <li>{{truck.description}}</li>
+    </ul>
 
 <button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button>
     <!-- Edit Truck Modal -->

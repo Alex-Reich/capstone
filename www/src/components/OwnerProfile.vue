@@ -78,11 +78,11 @@
                             </select>
                             <br>
                             <div class="form-group">
-                                <input v-model="truck.location" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
+                                <input v-model="truck.location.street" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
                             </div>
-                            <br>
+                            
                             <div class="form-group">
-                                <input v-model="truck.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
+                                <input v-model="truck.location.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
                             </div>
 
                             <div class="input-group">
@@ -109,9 +109,10 @@
         <div v-for="truck in owner.foodtrucks">
 
     <h2>{{truck.name}}<button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button></h2>
+    <p>{{truck.location}}</p>
 
         </div>
-        {{owner}}
+        
     </div>
 </template>
 

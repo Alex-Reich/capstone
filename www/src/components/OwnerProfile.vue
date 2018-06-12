@@ -80,7 +80,7 @@
                             <div class="form-group">
                                 <input v-model="truck.location.street" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
                             </div>
-                            <br>
+                            
                             <div class="form-group">
                                 <input v-model="truck.location.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
                             </div>
@@ -112,7 +112,11 @@
     <p>{{truck.location}}</p>
 
         </div>
+<<<<<<< HEAD
+        
+=======
         <!-- {{owner}} -->
+>>>>>>> 43bc1b89564323e857efbc4092387c0b9e41ad55
     </div>
 </template>
 

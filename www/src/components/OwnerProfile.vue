@@ -14,7 +14,7 @@
       </div>
         <h1 class="title">Hello {{owner.username}}</h1>
 
-        <!-- Edit Profil Modal -->
+        <!-- Edit Profile Modal -->
         <button type="button" class="btn btn-outline-light mb-2" data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
         <div class="modal fade" id="editOwnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -62,7 +62,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form v-on: submit.prevent="addTruck">
+                        <form v-on:submit.prevent="addTruck">
                             <div class="form-group">
                                 <input v-model="truck.name" type="text" name="truckName" class="form-control" id="formGroupExampleInput" placeholder="Truck Name"
                                     required>
@@ -108,8 +108,60 @@
         <h3 class="title">Current Active Trucks:</h3>
         <div v-for="truck in owner.foodtrucks">
 
-    <h2>{{truck.name}}<button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button></h2>
+    <h2>{{truck.name}}</h2>
     <p>{{truck.location}}</p>
+
+<button @click="deleteTruck(truck)"><i class="far fa-trash-alt cardIcon"></i></button>
+    <!-- Edit Truck Modal -->
+        <button type="button" class="btn btn-outline-dark mb-2" data-toggle="modal" data-target="#editTruckModal"><i class="far fa-edit"></i></button>
+        <div class="modal fade" id="editTruckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Truck</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form v-on:submit.prevent="editTruck">
+                            <div class="form-group">
+                                <input type="text" v-model="truck.name" name="truckname" class="form-control" id="formGroupExampleInput" placeholder="Truck Name" required>
+                            </div>
+                                <select v-model="truck.cuisine" class="form-control" name="Cuisine" placeholder="Select Cuisine Type">
+                                <option value="" disabled selected hidden>Please Choose...</option>
+                                <option>Asian</option>
+                                <option>Mexican</option>
+                                <option>American</option>
+                                <option>Soul Food</option>
+                                <option>Italian</option>
+                                <option>Other</option>
+                            </select>
+                            <div class="form-group">
+                                <input v-model="truck.location.street" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address" required>
+                            </div>
+                            <div class="form-group">
+                                <input v-model="truck.location.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City" required>
+                            </div>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span v-model="truck.time" class="input-group-text" id="">Open from:</span>
+                                </div>
+                                <input type="text" class="form-control">
+                                <span v-model="truck.time" class="input-group-text" id="">to:</span>
+                                <input type="text" class="form-control">
+                            </div>
+                            <br>
+                            <input v-model="truck.description" type="text" name="description" class="form-control" id="formGroupExampleInput" placeholder="Description">
+                            <div class="modal-footer">
+                                <button type="button" @click="editTruck" class="btn btn-primary" data-dismiss="modal">Edit Truck</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            </div>
 
         </div>
         
@@ -163,6 +215,10 @@
             },
             deleteTruck(truck) {
                 this.$store.dispatch('deleteTruck', truck._id)
+            },
+            editTruck(truck){
+
+                this.$store.dispatch('updateTruck')
             },
             ownerEdit(owner) {
                 this.owner.username = this.newowner.username

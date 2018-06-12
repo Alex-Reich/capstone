@@ -4,7 +4,7 @@
       <div class="main-top-style">
 
         <!-- Login Modal -->
-        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#loginModal">Login</button>
+        <button type="button" class="btn btn-light mt-1" data-toggle="modal" data-target="#loginModal">Login</button>
         <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -25,17 +25,15 @@
                               login.password" class="form-control" id="formGroupExampleInput" placeholder="Password">
                   </div>
                   <button type="button" @click="ownerLogin" class="btn btn-primary" data-dismiss="modal">Login</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Register Modal -->
-        <button type="button" class='btn btn-primary' data-toggle="modal" data-target="#registerModal">Register</button>
+        <button type="button" class="btn btn-light mt-1" data-toggle="modal" data-target="#registerModal">Register</button>
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -62,18 +60,18 @@
                     <input type="text" name="password" v-model="register.password" class="form-control" id="formGroupExampleInput" placeholder="Password">
                   </div>
                   <button type="button" @click="ownerRegister" class="btn btn-primary" data-dismiss="modal">Register</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                 </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
               </div>
             </div>
           </div>
         </div>
 
         <h1 class="Title">Trucking Hangry</h1>
-
-        <img src="http://placehold.it/150x150">
+<h1>
+<i class="fas fa-map-marker-alt fa-spin"></i>
+</h1>
+        <img src="http://placehold.it/100x100" class="mb-2">
       </div>
       <div class="main-bottom-style">
         <form @submit.prevent="getTrucks">
@@ -193,6 +191,7 @@
   .main-top-style {
     background-color: orange;
     color: white;
+    border-bottom: 2px solid black;
   }
 
   .main-bottom-style {

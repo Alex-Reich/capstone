@@ -92,21 +92,22 @@ router.put('/api/owners/:id/trucks/:tid', (req, res) => {
           res.status(400).send(err)
         })
     })
+})
 
-  // Delete Truck
-  router.delete('/api/owner/:id/trucks/:truckid', (req, res) => {
-    Owners.findById(req.params.id)
-      .then(owner => {
-        var truck = owner.foodtrucks.id(req.params.truckid)
-        truck.remove()
-        owner.save()
-          .then(() => {
-            res.send("Successfully Deleted Truck")
-          })
-          .catch(err => {
-            res.status(400).send(err)
-          })
-      })
-  })
-  module.exports = { router }
+// Delete Truck
+router.delete('/api/owner/:id/trucks/:truckid', (req, res) => {
+  Owners.findById(req.params.id)
+    .then(owner => {
+      var truck = owner.foodtrucks.id(req.params.truckid)
+      truck.remove()
+      owner.save()
+        .then(() => {
+          res.send("Successfully Deleted Truck")
+        })
+        .catch(err => {
+          res.status(400).send(err)
+        })
+    })
+})
+module.exports = { router }
 

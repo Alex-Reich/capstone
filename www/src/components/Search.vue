@@ -44,8 +44,8 @@
       // console.log('the Map options: ',options)
       const map = new google.maps.Map(element, options);
       // console.log('the Map object created by Google: ',map)
-      this.markerCoordinates.forEach((coord) => {
-        const position = new google.maps.LatLng(coord.latitude, coord.longitude);
+      this.foodTrucks.location.forEach((coord) => {
+        const position = new google.maps.LatLng(coord.lat, coord.lng);
         const marker = new google.maps.Marker({ position, map })
       })
     },

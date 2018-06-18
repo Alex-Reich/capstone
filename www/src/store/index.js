@@ -110,7 +110,7 @@ export default new vuex.Store({
 
   actions: {
     //////////////////// The AUTH Actions ///////////////////
-    login({ commit, dispatch }, loginCredentials) {
+    login({ commit }, loginCredentials) {
       auth.post('login', loginCredentials)
         .then(res => {
           console.log('Successfully logged in')
@@ -119,14 +119,14 @@ export default new vuex.Store({
           router.push({ name: 'OwnerProfile' })
         })
     },
-    logout({ commit, dispatch }) {
+    logout({ commit }) {
       auth.delete('logout')
         .then(res => {
           commit('deleteOwner')
           router.push({ name: 'Home' })
         })
     },
-    register({ commit, dispatch }, userData) {
+    register({ commit }, userData) {
       console.log(userData)
       auth.post('register', userData)
         .then(res => {
@@ -134,7 +134,7 @@ export default new vuex.Store({
           router.push({ name: 'OwnerProfile' })
         })
     },
-    authenticate({ commit, dispatch }) {
+    authenticate({ commit }) {
       auth.get('/authenticate')
         .then(res => {
           commit('setOwner', res.data)
@@ -145,13 +145,13 @@ export default new vuex.Store({
         })
     },
     /////////////// The Owner Actions /////////////////////////
-    deleteOwner({ commit, dispatch }, id) {
+    deleteOwner({ commit }, id) {
       api.delete('api/owners/' + id)
         .then(res => {
           commit('setOwner', id)
         })
     },
-    updateOwner({commit, dispatch}, owner){
+    updateOwner({ commit }, owner){
       console.log(owner)
       api.put('api/owners/' + owner._id, owner)
       .then(res=>{
@@ -162,7 +162,7 @@ export default new vuex.Store({
         console.log(res)
       })
     },
-    addTruck({ commit, dispatch }, truck) {
+    addTruck({ dispatch }, truck) {
       var query = formatGeoCodeString(truck.location)
       geoCode.get('/json?address=' + query + googleApiKey)
         .then(res=>{
@@ -179,7 +179,7 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-    getAllTrucks({ commit, dispatch, state}) {
+    getAllTrucks({ commit }) {
       api.get('api/trucks')
         .then(res => {
           console.log(res)
@@ -187,7 +187,7 @@ export default new vuex.Store({
           // router.push({name: "Search"})
         })
     },
-    getTrucks({commit,dispatch}, ownerid){
+    getTrucks({ commit }, ownerid){
       api.get('api/owner/'+ownerid+'/trucks')
         .then(res=>{
           commit('updateOwnerTrucks',res.data)
@@ -196,13 +196,13 @@ export default new vuex.Store({
           console.log(err)
         })
     },
-    viewTruck({ commit, dispatch, state }, id) {
+    viewTruck({ commit }, id) {
       api.get('api/trucks/' + id)
         .then(res => {
           commit('setActiveTruck', res.data)
         })
     },
-    editTruck({commit, dispatch, state}, truck){
+    editTruck({ dispatch }, truck){
       api.put('api/owners/'+truck.parentId+'/trucks/'+truck._id)
       .then(res=>{
         dispatch('getTrucks', truck.parentId)
@@ -212,7 +212,7 @@ export default new vuex.Store({
       })
     },
 
-    deleteTruck({ commit, dispatch, state }, id) {
+    deleteTruck({ dispatch, state }, id) {
       api.delete('/api/owner/' + state.owner._id + '/trucks/' + id)
         .then(res => {
           dispatch('getTrucks', state.owner._id)

@@ -303,6 +303,8 @@
             addTruck() {
                 this.truck.parentId = this.owner._id
                 this.truck.businessName = this.owner.businessName
+                this.truck.address=this.truck.location.street
+                this.truck.city=this.truck.location.city
                 this.$store.dispatch('addTruck', this.truck)
             },
             deleteTruck(truck) {

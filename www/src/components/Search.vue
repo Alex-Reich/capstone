@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="container-fluid">
     <div class="google-map" id="localTruckMap"></div>
     <button @click="getGeoLocation">Use my location</button>
-    <div>{{foodtrucks}}</div>
+    <div>{{foodTrucks[0]}}</div>
     <!-- {{foodTrucks}} -->
   </div>
   <!-- add this map to other components with <google-map name="Map"></google-map> -->
@@ -10,6 +10,7 @@
 
 <script>
   function createMarkers(arr){
+
     return
   }
   export default {
@@ -17,7 +18,7 @@
     props: ['name'],
     data() {
       return {
-        mapName: this.name + '-map',
+        mapName: 'localtruck-map',
         map: {},
         boise: {
           lat: 43.6150,
@@ -36,22 +37,40 @@
             latitude: 43.5907617,
             longitude: -116.3565662
           }
-        ]
-       // foodtrucks:[]
+        ],
+        foodtrucks:[]
       }
     },
     mounted() {
       this.$store.dispatch("getAllTrucks")
-      //this.foodtrucks=this.$store.state.foodtrucks
-      //this.initMap(); 
     },
     computed: {
       userGeoLocation() {
         return this.$store.state.userGeoLocation
       },
-      foodtrucks() {
-        //console.log("Search component",foodtrucks)
-        return this.$store.state.foodtrucks
+      foodTrucks() {
+        return this.foodtrucks = this.$store.state.foodtrucks
+      }
+    },
+    watch:{
+      foodtrucks: function(foodtrucks){
+        if(foodtrucks){
+          console.log(foodtrucks)
+        }
+        const element = document.getElementById('localTruckMap')
+        const options = {
+          zoom: 12,
+          center: new google.maps.LatLng(this.boise.lat, this.boise.lng)
+        }
+        const map = new google.maps.Map(element, options);
+        foodtrucks.forEach(truck => {
+          var marker = new google.maps.Marker({
+            position: {lat: truck.location[0].location.lat, lng: truck.location[0].location.lng},
+            map: map,
+            title: 'Work damn you'
+          })
+          marker.setMap(map);
+        })
       }
     },
     methods: {
@@ -60,26 +79,9 @@
       // },
       getGeoLocation() {
         this.$store.dispatch('getGeoLocation')
-      },
-    //   initMap(){
-    //     const element = document.getElementById('localTruckMap')
-    //     // console.log('Map name is: ',this.mapName)
-    //     const options = {
-    //       zoom: 13,
-    //       center: new google.maps.LatLng(this.boise.lat, this.boise.lng)
-    //     }
-    //     // console.log('the Map options: ',options)
-    //     const map = new google.maps.Map(element, options);
-    //     // console.log('the Map object created by Google: ',map)
-    //     // this.markerCoordinates.forEach((coord) => {
-    //     //   const position = new google.maps.LatLng(coord.lat, coord.lng);
-    //     //   const marker = new google.maps.Marker({ position, map }) })
-    //     this.foodtrucks.location.location.forEach((coord) => {
-    //       const position = new google.maps.LatLng(coord.lat, coord.lng);
-    //       const marker = new google.maps.Marker({position,map})
-    //   }) 
-    // }
-  }
+      }
+    }
+  
 }
 </script>
 

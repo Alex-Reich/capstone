@@ -306,6 +306,16 @@
                 this.truck.address=this.truck.location.street
                 this.truck.city=this.truck.location.city
                 this.$store.dispatch('addTruck', this.truck)
+                this.truck={
+                    name: '',
+                    businessName: '',
+                    cuisine: '',
+                    location: {
+                        street: '',
+                        city: '',
+                        state: 'ID'
+                    }
+                }
             },
             deleteTruck(truck) {
                 this.$store.dispatch('deleteTruck', truck._id)

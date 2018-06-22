@@ -156,9 +156,13 @@ export default new vuex.Store({
     },
     addTruck({ dispatch }, truck) {
       var query = formatGeoCodeString(truck.location)
+      // console.log("query= "+query)
       geoCode.get('/json?address=' + query + googleApiKey)
         .then(res=>{
-          truck.location = res.data.results[0].geometry.location
+          // console.log(res.data.results[0].geometry.location)
+          truck.location.location = res.data.results[0].geometry.location
+          // console.log("Successfully added truck")
+          // console.log(res.data.results[0].geometry.location)
           api.put('api/owners/' + truck.parentId+ '/trucks', truck)
             .then(res=> {
               dispatch('getTrucks', truck.parentId)

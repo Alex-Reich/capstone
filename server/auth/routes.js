@@ -25,6 +25,32 @@ router.post('/auth/register', (req, res) => {
     })
 })
 
+//Update Pasword
+router.post('/auth/updatePassword', (req, res) => {
+  if (req.body.password.length < 5) {
+    return res.status(400).send({
+      error: 'Password must be at least 6 characters'
+    })
+  }
+  req.body.password = Owners.generateHash(req.body.password)
+  Owners.findByIdAndUpdate(req.session.uid, req.body)
+    .then(owner => {
+      owner.validatePassword(req.body.oldpassword)
+        .then(valid => {
+          if (!valid) {
+            return res.status(400).send({ error: 'Invalid Password' })
+          }
+          delete owner._doc.password
+          delete req.body.oldpassword
+          req.session.uid = owner._id
+          res.send(owner)
+        })
+        .catch(err => {
+          res.status(400).send(err)
+        })
+    })
+})
+
 // Login as Owner
 router.post('/auth/login', (req, res) => {
   Owners.findOne({

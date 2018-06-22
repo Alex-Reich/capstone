@@ -252,21 +252,6 @@
         name: '',
         data() {
             return {
-                // truck: {
-                //     name: '',
-                //     businessName: '',
-                //     cuisine: '',
-                //     location: {
-                //         street: '',
-                //         city: '',
-                //         state: 'ID'
-                //     },
-                //     address: '',
-                //     city: '',
-                //     hours: '',
-                //     description: '',
-                //     parentId: ''
-                // },
                 newowner: {
                     username: '',
                     businessName: '',
@@ -287,6 +272,10 @@
                     description: '',
                     parentId: ''
                 },
+                changePassword: {
+                    oldpassword: "",
+                    password: "",
+                }
 
             }
         },

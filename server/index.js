@@ -31,6 +31,9 @@ let auth = require('./auth/routes')
 app.use(auth.session)
 app.use(auth.router)
 
+var trucks = require('./server-assets/routes/Trucks')
+app.use(trucks.router)
+
 app.use((req,res,next)=>{
   if(!req.session.uid){
     return res.status(401).send({

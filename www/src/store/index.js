@@ -43,30 +43,22 @@ function formatGeoCodeString(obj) {
   }
   return outQuery
 }
-///////// When this is active it will make sure we have permission from the user to use their window location.
-// function handlePermission(){
-//   navigator.permissions.query({name: 'geolocation'}).then(function(result){
-//     if(result.state=='granted'){
-//       report(result.state);
-//       geoBtn.style.display='none';
-//     }else if(result.state=='prompt'){
-//       report(result.state);
-//       geoBtn.style.display='none';
-//       navigator.geolocation.getCurrentPosition(revealPosition,positionDenied,geoSettings);
-//     }else if(result.state=='denied'){
-//       report(result.state);
-//       geoBtn.style.display='inline';
-//     }
-//     result.onchange=function(){
-//       report(result.state);
-//     }
-//   })
-//   return result.state
-// }
 
-// function report(state){
-//   console.log('Permission '+state);
-// }
+////// this will return the position
+function returnPosition(position){
+  console.log("This is your latitude: "+position.coords.latitude+ "\nThis is your longitude: "+position.coords.longitude)
+}
+
+////// this function will check and see if there is a geo location to pull from the window
+function getLocation(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(returnPosition);
+  }
+  else{
+    var outString = "Geolocation is not supported by this browser."
+    return outString
+  }
+}
 
 export default new vuex.Store({
   state: {
@@ -182,8 +174,8 @@ export default new vuex.Store({
     getAllTrucks({ commit }) {
       api.get('api/trucks')
         .then(res => {
-          console.log(res)
-          commit('setTrucks', res)
+          console.log("the store got back these trucks",res.data)
+          commit('setTrucks', res.data)
           // router.push({name: "Search"})
         })
     },
@@ -211,7 +203,6 @@ export default new vuex.Store({
         console.log(err)
       })
     },
-
     deleteTruck({ dispatch, state }, id) {
       api.delete('/api/owner/' + state.owner._id + '/trucks/' + id)
         .then(res => {
@@ -229,11 +220,12 @@ export default new vuex.Store({
           console.log(res)
         })
     },
-    getGeoLocation({ commit, dispatch }) {
-      geoLoc.post(googleApiKey)
-        .then(res => {
-          commit('setUserGeoLoc', res.data.location)
-        })
+    getGeoLocation() {
+      // geoLoc.post(googleApiKey)
+      //   .then(res => {
+      //     commit('setUserGeoLoc', res.data.location)
+      //   })
+      getLocation();
     },
     convertGeoCode({ commit, dispatch }, payload) {
       var query = formatGeoCodeString(payload)

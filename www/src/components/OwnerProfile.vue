@@ -115,7 +115,7 @@
 
             <h2>{{truck.name}}</h2>
             <ul class="addTruckList">
-                <li>{{truck.location}}</li>
+                <li>{{truck.address}}, {{truck.city}}</li>
                 <li>{{truck.cuisine}}</li>
                 <li>{{truck.hours}}</li>
                 <li>{{truck.description}}</li>

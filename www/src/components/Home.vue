@@ -95,8 +95,8 @@
                 <option>Italian</option>
                 <option>Other</option>
               </select>
-              <button type="submit" @click="getTrucks">Find that truck</button>
-              <!--link to search component-->
+              <button type="submit" @click="goToSearch">Find that truck</button>
+
             </div>
           </div>
         </form>
@@ -110,16 +110,12 @@
 
 <script>
   import router from '../router'
-  import search from './Search'
   import ownerProfile from './OwnerProfile'
   export default {
     name: 'Home',
     components: {
-      search,
+
       ownerProfile
-    },
-    mounted() {
-      this.$store.dispatch('renderStartMap')
     },
     data() {
       return {
@@ -155,6 +151,7 @@
       if(!this.$store.state.owner._id){
         this.$store.dispatch('authenticate')
       }
+      this.$store.dispatch("getAllTrucks")
     },
     computed: {
 
@@ -173,6 +170,9 @@
       convertGeoCode() {
         this.$store.dispatch('convertGeoCode', this.geocode)
         this.geocode = { street: '', city: '', state: '' }
+      },
+      goToSearch(){
+        router.push({name:"Search"})
       }
     }
   }

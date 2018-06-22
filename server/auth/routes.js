@@ -55,6 +55,7 @@ router.post('/auth/login', (req, res) => {
 })
 
 
+
 // Delete 
 router.delete('/auth/logout', (req, res) => {
   req.session.destroy(err => {

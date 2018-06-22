@@ -44,19 +44,13 @@ function formatGeoCodeString(obj) {
   return outQuery
 }
 
-////// this will return the position
-function returnPosition(position){
-  console.log("This is your latitude: "+position.coords.latitude+ "\nThis is your longitude: "+position.coords.longitude)
-}
-
 ////// this function will check and see if there is a geo location to pull from the window
-function getLocation(){
+var getLocation = function(options){
   if(navigator.geolocation){
-    navigator.geolocation.getCurrentPosition(returnPosition);
-  }
-  else{
-    var outString = "Geolocation is not supported by this browser."
-    return outString
+    return new Promise(function(resolve,reject){
+      navigator.geolocation.getCurrentPosition(resolve,reject,options);
+
+    })
   }
 }
 
@@ -66,8 +60,7 @@ export default new vuex.Store({
     foodtrucks: [],
     activeTruck: {},
     map: {},
-    userGeoLocation: {},
-    //entering new truck
+    userGeoLocation: {lat:0,lng:0},
     geoLocationTruck: {}
   },
   mutations: {
@@ -92,7 +85,8 @@ export default new vuex.Store({
       console.log('You called the setMap mutation and didnt write it')
     },
     setUserGeoLoc(state, payload) {
-      state.userGeoLocation = payload
+      state.userGeoLocation.lat=payload.latitude
+      state.userGeoLocation.lng=payload.longitude
       console.log('this is the user geoloc: ', state.userGeoLocation)
     },
     setGeoTruckLocation(state, truckLoc) {
@@ -178,7 +172,6 @@ export default new vuex.Store({
     getAllTrucks({ commit }) {
       api.get('api/trucks')
         .then(res => {
-          console.log("the store got back these trucks",res.data)
           commit('setTrucks', res.data)
           // router.push({name: "Search"})
         })
@@ -224,12 +217,16 @@ export default new vuex.Store({
           console.log(res)
         })
     },
-    getGeoLocation() {
-      // geoLoc.post(googleApiKey)
-      //   .then(res => {
-      //     commit('setUserGeoLoc', res.data.location)
-      //   })
-      getLocation();
+    getGeoLocation({commit}) {
+      getLocation()
+        .then((postion)=>{
+          commit('setUserGeoLoc',postion.coords)
+        })
+      .catch((err)=>{
+        console.log("Browser does not support geolocation")
+      })
+      
+      //state.userGeoLocation=location
     },
     convertGeoCode({ commit, dispatch }, payload) {
       var query = formatGeoCodeString(payload)
@@ -238,29 +235,6 @@ export default new vuex.Store({
           console.log(res.data.results[0].geometry.location)
           console.log('geocode was converted to the above but you still need to do something with it')
         })
-    },
-    renderStartMap({ commit, dispatch, state }) {
-
-      // if (handlePermission()) {
-      //   navigator.permissions.query({ name: 'geolocation' }).then(res => {
-      //     switch (res.state) {
-      //       case "granted":
-      //         var test = navigator.geolocation.getCurrentPosition(position => {
-      //           this.position = position
-      //           this.windowGeoLoc = {
-      //             lat: this.position.coords.latitude,
-      //             lng: this.position.coords.longitude
-      //           }
-      //           this.$store.commit('setUserGeoLoc', this.windowGeoLoc)
-      //         })
-      //         break;
-      //     }
-      //   })
-      // }
-      // else {
-      //   console.log('Geolocation is not supported by this browser.')
-      // }      
     }
-
   }
 })

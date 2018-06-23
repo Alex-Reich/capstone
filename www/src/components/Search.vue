@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid search"  v-on:scroll.passive="onScroll">
     <div class="btn-style text-center">
-      <button class="mt-1" style="float: right;" v-if="!user" @click="getGeoLocation,user=true">Use my location</button>
-      <button class="mt-1" style="float: left;" @click="backHome">Back</button>
+      <button class="mt-1 btn btn1 mb-2" style="float: right;" v-if="!user" @click="getGeoLocation,user=true">Use my location</button>
+      <button class="mt-1 btn btn1 mb-2" style="float: left;" @click="backHome">Back</button>
     </div>
     <div class="google-map pb-0.5" id="localTruckMap"></div>
     <div class="accordion" id="accordion">

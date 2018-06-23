@@ -90,9 +90,9 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="">Open from:</span>
-                                        <input v-model="newTruck.start" value="HH:mm" type="text" class="form-control">
+                                        <input v-model="newTruck.start" value="HH:mm" type="time" class="form-control">
                                         <span class="input-group-text" id="">to:</span>
-                                        <input v-model="newTruck.end" value="HH:mm" type="text" class="form-control">
+                                        <input v-model="newTruck.end" value="HH:mm" type="time" class="form-control">
                                     </div>
                                 </div>
                                 <br>
@@ -157,9 +157,9 @@
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" id="">Open from:</span>
-                                        <input v-model="truck.start" value="HH:mm" type="text" class="form-control">
+                                        <input v-model="truck.start" value="HH:mm" type="time" class="form-control">
                                         <span class="input-group-text" id="">to:</span>
-                                        <input v-model="truck.end" value="HH:mm" type="text" class="form-control">
+                                        <input v-model="truck.end" value="HH:mm" type="time" class="form-control">
                                     </div>
                                 </div>
                                 <br>
@@ -251,7 +251,9 @@
                 this.$store.dispatch('deleteTruck', truck._id)
             },
             editTruck(truck) {
-
+                this.newTruck.address=this.newTruck.location.street
+                this.newTruck.city=this.newTruck.location.city
+                this.newTruck.hours=this.newTruck.start+" to "+this.newTruck.end
                 this.$store.dispatch('editTruck', truck)
             },
             ownerEdit(owner) {

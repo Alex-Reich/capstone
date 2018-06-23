@@ -8,7 +8,7 @@
             <h1 class="title">Hello {{owner.username}}</h1>
 
             <!-- Edit Profile Modal -->
-            <button type="button" @click="show=false" class="btn btn-outline-light mb-2" data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
+            <button type="button" @click="show=false" class="btn btn1 mb-2" data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
             <div class="modal fade" id="editOwnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -51,7 +51,7 @@
         </div>
         <div>
             <!-- Add Truck Modal -->
-            <button type="button" class="btn btn-outline-dark mt-2" data-toggle="modal" data-target="#addTruckModal">Add Truck</button>
+            <button type="button" class="btn btn1 mt-2" data-toggle="modal" data-target="#addTruckModal">Add Truck</button>
             <div class="modal fade" id="addTruckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -99,8 +99,8 @@
                                 <input v-model="newTruck.description" value="newTruck.description" type="text" name="description" class="form-control" id="formGroupExampleInput"
                                     placeholder="Description">
                                 <div class="modal-footer">
-                                    <button type="button" @click="addTruck" class="btn btn-primary" data-dismiss="modal">Add Truck</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                    <button type="button" @click="addTruck" class="btn btn-primary" data-dismiss="modal">Save</button>
+                                    <button type="button" class="btn btn1" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>
@@ -109,7 +109,7 @@
             </div>
         </div>
         <h3 class="title">Current Active Trucks:</h3>
-        <div v-for="truck in owner.foodtrucks">
+        <div v-for="truck in owner.foodtrucks" class = "truckboarder">
 
             <h2>{{truck.name}}</h2>
             
@@ -119,8 +119,8 @@
                 <p>{{truck.description}}</p>
         
             <!-- Edit Truck Modal -->
-            <button type="button" class="btn btn-outline-dark mb-2" data-toggle="modal" data-target="#editTruckModal">
-                <i class="far fa-edit"></i>
+            <button type="button" class="btn btn1 mb-2" data-toggle="modal" data-target="#editTruckModal">
+                Edit Truck
             </button>
             <div class="modal fade" id="editTruckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -165,7 +165,7 @@
                                 <br>
                                 <input v-model="truck.description" type="text" name="description" class="form-control" id="formGroupExampleInput" placeholder="Description">
                                 <div class="modal-footer">
-                                    <button type="button" @click="editTruck(truck)" class="btn btn-primary" data-dismiss="modal">Edit Truck</button>
+                                    <button type="button" @click="editTruck(truck)" class="btn btn-primary" data-dismiss="modal">Save</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
@@ -279,6 +279,10 @@
     .title {
         font-family: 'Palanquin Dark', sans-serif;
     }
-
+    .truckboarder{
+        border-color: black;
+        border: solid 2px; 
+        margin-bottom: 4px;
+    }
 
 </style>

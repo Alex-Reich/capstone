@@ -20,7 +20,14 @@ export default {
   color: #2c3e50;
 
 }
-.btn{
-  border-radius: 15%
+.btn1{
+  border-radius: 15%;
+  border-color: #f1c550;
+  background-color: #f1c550;
+}
+.btn2{
+  border-radius: 15%;
+  border-color: #ff6600;
+  background-color: #ff6600;
 }
 </style>

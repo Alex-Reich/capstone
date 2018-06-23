@@ -5,6 +5,7 @@
       <button class="mt-1 btn btn1 mb-2" style="float: left;" @click="backHome">Back</button>
     </div>
     <div class="google-map pb-0.5" id="localTruckMap"></div>
+    <div class="list">
     <div class="accordion" id="accordion">
       <div class="card" v-for="(truck,index) in foodTrucks" :key="index">
         <div class="card-header pb-0 pt-0" style="height: 35px;" :id="index">
@@ -20,10 +21,12 @@
             <p class="truck-info">{{truck.businessName}}</p>
             <p class="truck-info">{{truck.address}}, {{truck.city}}</p>
             <p class="truck-info">{{truck.cuisine}}</p>
+            <p class="truck-info">{{truck.hours}}</p>
           </div>
         </div>
       </div>
     </div>
+  </div>
   </div>
   <!-- add this map to other components with <google-map name="Map"></google-map> -->
 </template>
@@ -99,26 +102,24 @@
 <style>
   .google-map {
     width: 100%;
-    height: 600px;
+    height: 500px;
     margin: 0 auto;
     touch-action: auto;
     padding-top: 1rem;
     margin-bottom: 1rem;
   }
 
-  .accorion {
-    /* overflow: hidden; */
-    position: relative;
-    height: 15%;
-  }
-
   .search {
     background-color: red;
-    position: fixed;
   }
 
   .btn-style{
     height: 40px;
+  }
+
+  .list{
+    overflow-y: scroll;
+    overflow: hidden;
   }
 
   .truck-info{

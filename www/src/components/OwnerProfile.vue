@@ -89,11 +89,11 @@
 
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span v-model="newTruck.hours" value="newTruck.hours" class="input-group-text" id="">Open from:</span>
+                                        <span class="input-group-text" id="">Open from:</span>
+                                        <input v-model="newTruck.start" value="HH:mm" type="text" class="form-control">
+                                        <span class="input-group-text" id="">to:</span>
+                                        <input v-model="newTruck.end" value="HH:mm" type="text" class="form-control">
                                     </div>
-                                    <input type="text" class="form-control">
-                                    <span v-model="newTruck.hours" value="newTruck.hours" class="input-group-text" id="">to:</span>
-                                    <input type="text" class="form-control">
                                 </div>
                                 <br>
                                 <input v-model="newTruck.description" value="newTruck.description" type="text" name="description" class="form-control" id="formGroupExampleInput"
@@ -156,11 +156,11 @@
                                 </div>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <span v-model="truck.hours" class="input-group-text" id="">Open from:</span>
+                                        <span class="input-group-text" id="">Open from:</span>
+                                        <input v-model="truck.start" value="HH:mm" type="text" class="form-control">
+                                        <span class="input-group-text" id="">to:</span>
+                                        <input v-model="truck.end" value="HH:mm" type="text" class="form-control">
                                     </div>
-                                    <input type="text" class="form-control">
-                                    <span v-model="truck.hours" class="input-group-text" id="">to:</span>
-                                    <input type="text" class="form-control">
                                 </div>
                                 <br>
                                 <input v-model="truck.description" type="text" name="description" class="form-control" id="formGroupExampleInput" placeholder="Description">
@@ -205,6 +205,8 @@
                     },
                     city: '',
                     hours: '',
+                    start: '',
+                    end: '',
                     description: '',
                     parentId: ''
                 },
@@ -232,6 +234,7 @@
                 this.newTruck.businessName = this.owner.businessName
                 this.newTruck.address=this.newTruck.location.street
                 this.newTruck.city=this.newTruck.location.city
+                this.newTruck.hours=this.newTruck.start+" to "+this.newTruck.end
                 this.$store.dispatch('addTruck', this.newTruck)
                 this.newTruck={
                     name: '',

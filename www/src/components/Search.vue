@@ -16,9 +16,10 @@
         </div>
 
         <div :id="truck._id" class="collapse" :aria-labelledby="index" data-parent="#accordion">
-          <div class="card-body">
-            <p>{{truck.businessName}}</p>
-            <p>{{truck.address}}, {{truck.city}}</p>
+          <div class="card-body text-left flex-wrap">
+            <p class="truck-info">{{truck.businessName}}</p>
+            <p class="truck-info">{{truck.address}}, {{truck.city}}</p>
+            <p class="truck-info">{{truck.cuisine}}</p>
           </div>
         </div>
       </div>
@@ -102,18 +103,26 @@
     margin: 0 auto;
     touch-action: auto;
     padding-top: 1rem;
+    margin-bottom: 1rem;
   }
 
   .accorion {
-    overflow: hidden;
+    /* overflow: hidden; */
+    position: relative;
+    height: 15%;
   }
 
   .search {
     background-color: red;
-    margin-top: 0;
+    position: fixed;
   }
 
   .btn-style{
     height: 40px;
+  }
+
+  .truck-info{
+    padding: 0px 0px;
+    margin: 0.5px 0.5px;
   }
 </style>

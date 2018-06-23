@@ -13,11 +13,14 @@ export default {
 
 <style>
 #app {
-  font-family: 'Gochi Hand', cursive;
+  font-family: 'Palanquin Dark', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 
+}
+.btn{
+  border-radius: 15%
 }
 </style>

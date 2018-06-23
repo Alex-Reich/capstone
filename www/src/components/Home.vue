@@ -4,7 +4,7 @@
       <div class="main-top-style">
 
         <!-- Login Modal -->
-        <button type="button" class="btn btn-light mt-1" data-toggle="modal" data-target="#loginModal">Login</button>
+        <button type="button" class="btn btn-light mt-1 btnwidth2 mr-4" data-toggle="modal" data-target="#loginModal">Login</button>
         <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -33,7 +33,7 @@
         </div>
 
         <!-- Register Modal -->
-        <button type="button" class="btn btn-light mt-1" data-toggle="modal" data-target="#registerModal">Register</button>
+        <button type="button" class="btn btn-light mt-1 btnwidth2 ml-4" data-toggle="modal" data-target="#registerModal">Register</button>
         <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -77,17 +77,17 @@
         <form @submit.prevent="getTrucks">
           <div class="form-group row">
             <div class="col-sm-10 offset-sm-1 text-center">
-              <select class="form-control" name="proximity" v-model="search.distance">
+              <!-- <select class="form-control" name="proximity" v-model="search.distance">
                 <option value="" disabled selected hidden>Search by Radius</option>
                 <option>0-5 miles</option>
                 <option>5-10 miles</option>
                 <option>10-15 miles</option>
                 <option>15-20 miles</option>
-              </select>
-              <input class="form-control" type="search" placeholder="Zipcode" id="search-input" v-model="search.zipcode">
+              </select> -->
+              <!-- <input class="form-control" type="search" placeholder="Zipcode" id="search-input" v-model="search.zipcode"> -->
               <input class="form-control" type="search" placeholder="Truck Name" id="search-input" v-model="search.truckname">
               <select class="form-control" name="Cuisine" v-model="search.cuisineType">
-                <option value="" disabled selected hidden>Search by Cuisine Type</option>
+                <option value="" disabled selected hidden>Cuisine Type</option>
                 <option>Asian</option>
                 <option>Mexican</option>
                 <option>American</option>
@@ -95,7 +95,9 @@
                 <option>Italian</option>
                 <option>Other</option>
               </select>
-              <button type="submit" class="btn btn-light mt-1 mb-1" @click="goToSearch">Find that truck</button>
+            <div class = "foodtruck">
+              <button type="submit" class="btn btn-light mt-1 mb-1 btnwidth" @click="goToSearch">Find that truck</button>
+              </div>
 
             </div>
           </div>
@@ -184,11 +186,13 @@
   .main-top-style {
     background-color: rgb(255, 0, 0);
     color: white;
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
   }
 
   .main-bottom-style {
-    background-color: rgb(255, 0, 0)
+    background-color: rgb(255, 0, 0);
+    padding: 15%;
+    
   }
 
   .Title {
@@ -196,6 +200,16 @@
   }
 
   .trucklogo{
-    border-radius: 10%;
+    border-radius: 10%;  
+  }
+
+  .foodtruck{
+    margin-top: 3rem;
+  }
+  .btnwidth{
+    padding: 5% 20% 5% 20%;
+  }
+  .btnwidth2{
+    padding: 2% 10% 2% 10%
   }
 </style>

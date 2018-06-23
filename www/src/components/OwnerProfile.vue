@@ -3,7 +3,7 @@
         <div class="ownerProf">
             <div class="profIcon d-flex">
 
-                <button class="btn btn-outline-light ml-auto" @click=logout()>logout</button>
+                <button class="btn btn-dark ml-auto rnd" @click=logout()>Logout</button>
             </div>
             <h1 class="title">Hello {{owner.username}}</h1>
 
@@ -112,14 +112,12 @@
         <div v-for="truck in owner.foodtrucks">
 
             <h2>{{truck.name}}</h2>
-            <ul class="addTruckList">
-                <li>{{truck.address}}, {{truck.city}}</li>
-                <li>{{truck.cuisine}}</li>
-                <li>{{truck.hours}}</li>
-                <li>{{truck.description}}</li>
-            </ul>
-
-
+            
+                <p>Location: {{truck.address}}, {{truck.city}}</p>
+                <p>Cuisine Type: {{truck.cuisine}}</p>
+                <p>{{truck.hours}}</p>
+                <p>{{truck.description}}</p>
+        
             <!-- Edit Truck Modal -->
             <button type="button" class="btn btn-outline-dark mb-2" data-toggle="modal" data-target="#editTruckModal">
                 <i class="far fa-edit"></i>
@@ -181,7 +179,6 @@
             </div>
         </div>
     </div>
-
 </template>
 
 
@@ -283,7 +280,5 @@
         font-family: 'Palanquin Dark', sans-serif;
     }
 
-    .addTruckList {
-        list-style-type: none;
-    }
+
 </style>

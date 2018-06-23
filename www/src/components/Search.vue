@@ -1,19 +1,19 @@
 <template>
-  <div class="container-fluid search">
+  <div class="container-fluid search"  v-on:scroll.passive="onScroll">
     <div class="google-map pb-0.5" id="localTruckMap"></div>
     <button v-if="!user" @click="getGeoLocation,user=true" style="z-index:0">Use my location</button>
     <div class="accordion" id="accordion">
       <div class="card" v-for="(truck,index) in foodTrucks" :key="index">
-        <div class="card-header pb-0 pt-0" :id="index">
+        <div class="card-header pb-0 pt-0" style="height: 35px;" :id="index">
           <h5 class="mb-0">
             <button class="btn btn-link" type="button" data-toggle="collapse" :data-target="'#'+truck._id" aria-expanded="true" :aria-controls="truck._id">
-              <p>{{truck.businessName}}</p>
+              <p>{{(labels[index])}} - {{truck.businessName}}</p>
             </button>
           </h5>
         </div>
 
         <div :id="truck._id" class="collapse" :aria-labelledby="index" data-parent="#accordion">
-          <div class="card-body justify-content-between">
+          <div class="card-body">
             <p>{{truck.businessName}}</p>
             <p>{{truck.address}}, {{truck.city}}</p>
           </div>
@@ -36,7 +36,9 @@
           lat: 43.6150,
           lng: -116.2023
         },
-        user: false
+        user: false,
+        labels: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        labelIndex: 0
       }
     },
     mounted() {
@@ -64,17 +66,17 @@
             var marker = new google.maps.Marker({
               position: { lat: truck.location[0].location.lat, lng: truck.location[0].location.lng },
               map: map,
-              title: truck.businessName
+              label: this.labels[this.labelIndex++ % this.labels.length]
             })
             marker.setMap(map);
           })
-
         }
       },
       deep: true
     },
     methods: {
       getGeoLocation() {
+        this.$store.dispatch('getAllTrucks')
         this.$store.dispatch('getGeoLocation')
       }
     }
@@ -96,7 +98,7 @@
   }
 
   .search {
-    background-color: orange;
+    background-color: red;
     margin-top: 0;
   }
 </style>

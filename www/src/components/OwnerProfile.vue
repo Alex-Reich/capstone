@@ -2,13 +2,6 @@
     <div>
         <div class="ownerProf">
             <div class="profIcon d-flex">
-                <i class="far fa-check-square"></i>
-                <i class="far fa-address-card"></i>
-                <i class="fas fa-dollar-sign"></i>
-
-                <i class="far fa-plus-square"></i>
-                <i class="far fa-stop-circle"></i>
-                <i class="far fa-edit"></i>
 
                 <button class="btn btn-outline-light ml-auto" @click=logout()>logout</button>
             </div>
@@ -126,9 +119,7 @@
                 <li>{{truck.description}}</li>
             </ul>
 
-            <button @click="deleteTruck(truck)">
-                <i class="far fa-trash-alt cardIcon"></i>
-            </button>
+
             <!-- Edit Truck Modal -->
             <button type="button" class="btn btn-outline-dark mb-2" data-toggle="modal" data-target="#editTruckModal">
                 <i class="far fa-edit"></i>
@@ -279,17 +270,17 @@
 
 <style>
     .ownerProf {
-        background-color: orange;
+        background-color: rgb(255, 0, 0);
         color: white;
         border-bottom: 2px solid black;
     }
 
     .main-bottom-style {
-        background-color: rgb(230, 220, 240)
+        background-color: rgb(220, 237, 240)
     }
 
     .title {
-        font-family: 'Cabin Sketch', cursive;
+        font-family: 'Palanquin Dark', sans-serif;
     }
 
     .addTruckList {

@@ -67,11 +67,11 @@
           </div>
         </div>
 
-        <h1 class="Title">Trucking Hangry</h1>
+        <h1 class="Title">OnWheels</h1>
 <h1>
 <i class="fas fa-map-marker-alt fa-spin"></i>
 </h1>
-        <img src="http://placehold.it/100x100" class="mb-2">
+        <img src="../assets/Food Truck.jpg" class="mb-2 trucklogo">
       </div>
       <div class="main-bottom-style">
         <form @submit.prevent="getTrucks">
@@ -95,7 +95,7 @@
                 <option>Italian</option>
                 <option>Other</option>
               </select>
-              <button type="submit" @click="goToSearch">Find that truck</button>
+              <button type="submit" class="btn btn-light mt-1 mb-1" @click="goToSearch">Find that truck</button>
 
             </div>
           </div>
@@ -180,17 +180,22 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
   .main-top-style {
-    background-color: orange;
+    background-color: rgb(255, 0, 0);
     color: white;
     border-bottom: 2px solid black;
   }
 
   .main-bottom-style {
-    background-color: rgb(230, 220, 240)
+    background-color: rgb(255, 0, 0)
   }
 
   .Title {
-    font-family: 'Cabin Sketch', cursive;
+    font-family: 'Palanquin Dark', sans-serif;
+  }
+
+  .trucklogo{
+    border-radius: 10%;
   }
 </style>

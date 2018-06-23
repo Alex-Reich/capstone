@@ -30,4 +30,7 @@ export default {
   border-color: #ff6600;
   background-color: #ff6600;
 }
+.btn{
+  border-radius: 15%;
+}
 </style>

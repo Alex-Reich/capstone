@@ -31,15 +31,15 @@
                                 <div class="form-group">
                                     <input v-model="owner.email" type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="email">
                                 </div>
-                                <button type="button" @click="show=true" class="btn btn-primary">Change Password</button>
+                                <button type="button" @click="show=true" class="btn btn1 mb-3">Change Password</button>
                                     <div v-if="show" class="form-group">
                                         <input v-model="changePassword.oldpassword" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Current Password">
                                     </div>
                                     <div v-if="show" class="form-group">
                                         <input v-model="changePassword.password" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="New Password">
                                     </div>
-                                <button type="button" @click="ownerEdit(owner)" v-if="!show"class="btn btn-primary" data-dismiss="modal">Save</button>
-                                <button type="button" @click="updatePassword(changePassword)" v-if="show" class="btn btn-primary" data-dismiss="modal">Update Password</button>
+                                <button type="button" @click="ownerEdit(owner)" v-if="!show"class="btn btn2 mb-3" data-dismiss="modal">Save</button>
+                                <button type="button" @click="updatePassword(changePassword)" v-if="show" class="btn btn1" data-dismiss="modal">Update Password</button>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -99,8 +99,8 @@
                                 <input v-model="newTruck.description" value="newTruck.description" type="text" name="description" class="form-control" id="formGroupExampleInput"
                                     placeholder="Description">
                                 <div class="modal-footer">
-                                    <button type="button" @click="addTruck" class="btn btn-primary" data-dismiss="modal">Save</button>
-                                    <button type="button" class="btn btn1" data-dismiss="modal">Cancel</button>
+                                    <button type="button" @click="addTruck" class="btn btn2" data-dismiss="modal">Save</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>
                         </div>
@@ -165,7 +165,7 @@
                                 <br>
                                 <input v-model="truck.description" type="text" name="description" class="form-control" id="formGroupExampleInput" placeholder="Description">
                                 <div class="modal-footer">
-                                    <button type="button" @click="editTruck(truck)" class="btn btn-primary" data-dismiss="modal">Save</button>
+                                    <button type="button" @click="editTruck(truck)" class="btn btn2" data-dismiss="modal">Save</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                                 </div>
                             </form>

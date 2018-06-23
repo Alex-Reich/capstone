@@ -1,7 +1,10 @@
 <template>
   <div class="container-fluid search"  v-on:scroll.passive="onScroll">
+    <div class="btn-style text-center">
+      <button class="mt-1" style="float: right;" v-if="!user" @click="getGeoLocation,user=true">Use my location</button>
+      <button class="mt-1" style="float: left;" @click="backHome">Back</button>
+    </div>
     <div class="google-map pb-0.5" id="localTruckMap"></div>
-    <button v-if="!user" @click="getGeoLocation,user=true" style="z-index:0">Use my location</button>
     <div class="accordion" id="accordion">
       <div class="card" v-for="(truck,index) in foodTrucks" :key="index">
         <div class="card-header pb-0 pt-0" style="height: 35px;" :id="index">
@@ -25,6 +28,7 @@
 </template>
 
 <script>
+  import router from '../router'
   export default {
     name: 'Search',
     props: ['name'],
@@ -56,12 +60,15 @@
       foodTrucks: {
         handler(foodTrucks) {
           const element = document.getElementById('localTruckMap')
+          if(this.userGeoLocation.lat!=0){
+            this.center.lat=this.userGeoLocation.lat;
+            this.center.lng=this.userGeoLocation.lng;
+          }
           const options = {
             zoom: 12,
             center: new google.maps.LatLng(this.center.lat, this.center.lng)
           }
           const map = new google.maps.Map(element, options);
-          console.log("setMap")
           foodTrucks.forEach(truck => {
             var marker = new google.maps.Marker({
               position: { lat: truck.location[0].location.lat, lng: truck.location[0].location.lng },
@@ -76,8 +83,11 @@
     },
     methods: {
       getGeoLocation() {
-        this.$store.dispatch('getAllTrucks')
         this.$store.dispatch('getGeoLocation')
+        this.$store.dispatch('getAllTrucks')
+      },
+      backHome(){
+        router.push({name: "Home"})
       }
     }
 
@@ -91,6 +101,7 @@
     height: 600px;
     margin: 0 auto;
     touch-action: auto;
+    padding-top: 1rem;
   }
 
   .accorion {
@@ -100,5 +111,9 @@
   .search {
     background-color: red;
     margin-top: 0;
+  }
+
+  .btn-style{
+    height: 40px;
   }
 </style>

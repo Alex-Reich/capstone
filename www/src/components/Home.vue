@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class = "fullscreen">
     <div class="home container-fluid">
       <div class="main-top-style">
 
@@ -183,15 +183,21 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+  .fullscreen{
+    height: 100vh;
+  }
+
   .main-top-style {
     background-color: rgb(255, 0, 0);
     color: white;
+    height: 70vh;
     /* border-bottom: 2px solid black; */
   }
 
   .main-bottom-style {
     background-color: rgb(255, 0, 0);
-    padding: 15%;
+    height: 30vh;
+    /* padding: auto; */
     
   }
 

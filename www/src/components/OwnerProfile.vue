@@ -38,14 +38,15 @@
                                 <div class="form-group">
                                     <input v-model="owner.email" type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="email">
                                 </div>
-                                <div v-if="show" class="form-group">
-                                    <input v-model="owner.oldpassword" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Current Password">
-                                </div>
-                                <div v-if="show" class="form-group">
-                                    <input v-model="owner.password" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="New Password">
-                                </div>
                                 <button type="button" @click="show=true" class="btn btn-primary">Change Password</button>
-                                <button type="button" @click="ownerEdit(owner)" class="btn btn-primary" data-dismiss="modal">Save</button>
+                                    <div v-if="show" class="form-group">
+                                        <input v-model="changePassword.oldpassword" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Current Password">
+                                    </div>
+                                    <div v-if="show" class="form-group">
+                                        <input v-model="changePassword.password" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="New Password">
+                                    </div>
+                                <button type="button" @click="ownerEdit(owner)" v-if="!show"class="btn btn-primary" data-dismiss="modal">Save</button>
+                                <button type="button" @click="updatePassword(changePassword)" v-if="show" class="btn btn-primary" data-dismiss="modal">Update Password</button>
                             </form>
                         </div>
                         <div class="modal-footer">
@@ -259,22 +260,14 @@
                 this.$store.dispatch('deleteTruck', truck._id)
             },
             editTruck(truck) {
-                // this.truck.parentId = this.truck._id
-                // this.truck.name = this.newtruck.name
-                // this.truck.cuisine = this.newtruck.cuisine
-                // this.truck.location.street = this.newtruck.location.street
-                // this.truck.location.city = this.newtruck.location.city
-                // this.truck.hours = this.newtruck.hours
-                // this.truck.description = this.newtruck.description
+
                 this.$store.dispatch('editTruck', truck)
             },
             ownerEdit(owner) {
-                this.owner.username = this.newowner.username
-                this.owner.businessName = this.newowner.businessName
-                this.owner.email = this.newowner.email
-                this.owner.oldpassword = this.changePassword.oldpassword
-                this.owner.password = this.changePassword.password
-                this.$store.dispatch('updateOwner', newowner)
+                this.$store.dispatch('updateOwner', owner)
+            },
+            updatePassword(changePassword){
+                this.$store.dispatch('updatePassword', changePassword)
             },
             logout() {
                 this.$store.dispatch('logout')

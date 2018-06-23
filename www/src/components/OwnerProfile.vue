@@ -15,7 +15,7 @@
             <h1 class="title">Hello {{owner.username}}</h1>
 
             <!-- Edit Profile Modal -->
-            <button type="button" class="btn btn-outline-light mb-2" data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
+            <button type="button" @click="show=false" class="btn btn-outline-light mb-2" data-toggle="modal" data-target="#editOwnerModal">Edit Profile</button>
             <div class="modal fade" id="editOwnerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
@@ -38,10 +38,13 @@
                                 <div class="form-group">
                                     <input v-model="owner.email" type="text" name="email" class="form-control" id="formGroupExampleInput" placeholder="email">
                                 </div>
-                                <!-- <div class="form-group">
-                                    <input v-model="owner.password" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Password">
-                                </div> -->
-                                <button type="button" @click="ownerEdit(owner)" class="btn btn-primary" data-dismiss="modal">Change Password</button>
+                                <div v-if="show" class="form-group">
+                                    <input v-model="owner.oldpassword" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="Current Password">
+                                </div>
+                                <div v-if="show" class="form-group">
+                                    <input v-model="owner.password" type="text" name="password" class="form-control" id="formGroupExampleInput" placeholder="New Password">
+                                </div>
+                                <button type="button" @click="show=true" class="btn btn-primary">Change Password</button>
                                 <button type="button" @click="ownerEdit(owner)" class="btn btn-primary" data-dismiss="modal">Save</button>
                             </form>
                         </div>
@@ -180,62 +183,6 @@
                         <button @click="deleteTruck(truck)">
                             <i class="far fa-trash-alt cardIcon"></i>
                         </button>
-                        <!-- Edit Truck Modal -->
-                        <!-- <button type="button" class="btn btn-outline-dark mb-2" data-toggle="modal" data-target="#editTruckModal">
-                            <i class="far fa-edit"></i>
-                        </button>
-                        <div class="modal fade" id="editTruckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit Truck</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form v-on:submit.prevent="editTruck">
-                                            <div class="form-group">
-                                                <input type="text" v-model="newtruck.name" name="truckname" class="form-control" id="formGroupExampleInput" placeholder="Truck Name"
-                                                    required>
-                                            </div>
-                                            <select v-model="newtruck.cuisine" class="form-control" name="Cuisine" placeholder="Select Cuisine Type">
-                                                <option value="" disabled selected hidden>Please Choose...</option>
-                                                <option>Asian</option>
-                                                <option>Mexican</option>
-                                                <option>American</option>
-                                                <option>Soul Food</option>
-                                                <option>Italian</option>
-                                                <option>Other</option>
-                                            </select>
-                                            <div class="form-group">
-                                                <input v-model="newtruck.location.street" type="text" name="location" class="form-control" id="formGroupExampleInput" placeholder="Address"
-                                                    required>
-                                            </div>
-                                            <div class="form-group">
-                                                <input v-model="newtruck.location.city" type="text" name="city" class="form-control" id="formGroupExampleInput" placeholder="City"
-                                                    required>
-                                            </div>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <span v-model="newtruck.hours" class="input-group-text" id="">Open from:</span>
-                                                </div>
-                                                <input type="text" class="form-control">
-                                                <span v-model="newtruck.hours" class="input-group-text" id="">to:</span>
-                                                <input type="text" class="form-control">
-                                            </div>
-                                            <br>
-                                            <input v-model="newtruck.description" type="text" name="description" class="form-control" id="formGroupExampleInput" placeholder="Description">
-                                            <div class="modal-footer">
-                                                <button type="button" @click="editTruck" class="btn btn-primary" data-dismiss="modal">Edit Truck</button>
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div> -->
 
                     </div>
                 </div>
@@ -275,7 +222,8 @@
                 changePassword: {
                     oldpassword: "",
                     password: "",
-                }
+                },
+                show:false
 
             }
         },
@@ -324,7 +272,8 @@
                 this.owner.username = this.newowner.username
                 this.owner.businessName = this.newowner.businessName
                 this.owner.email = this.newowner.email
-                this.owner.password = this.newowner.password
+                this.owner.oldpassword = this.changePassword.oldpassword
+                this.owner.password = this.changePassword.password
                 this.$store.dispatch('updateOwner', newowner)
             },
             logout() {

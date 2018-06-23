@@ -142,12 +142,19 @@ export default new vuex.Store({
       api.put('api/owners/' + owner._id, owner)
       .then(res=>{
         console.log(res.data.message)
-        commit('setOwner', owner._id)
+        commit('setOwner', owner)
       })
       .catch(res => {
         console.log(res)
       })
     },
+    updatePassword({ commit, dispatch}, changePassword){
+      auth.post('updatePassword', changePassword)
+      .then (res=>{
+        console.log("Password successfully updated")
+      })
+    },
+
     addTruck({ dispatch }, truck) {
       var query = formatGeoCodeString(truck.location)
       // console.log("query= "+query)

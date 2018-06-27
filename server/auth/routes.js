@@ -1,5 +1,5 @@
 let router = require('express').Router();
-let Owners = require('../server-assets/models/owner');
+let Owners = require('../server-assets/models/Owner.js');
 let session = require('./session')
 
 let loginError = new Error('Bad Email or Password')

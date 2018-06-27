@@ -1,6 +1,6 @@
 var router = require('express').Router()
-var Owners = require('../models/owner')
-var session = require('../../auth/session')
+var Owners = require('../models/Owner')
+// var session = require('../../auth/session')
 
 // Get All Owners, to get Trucks
 router.get('/api/owners', (req, res) => {
@@ -13,22 +13,22 @@ router.get('/api/owners', (req, res) => {
     })
 })
 
-// Get all trucks so their positions can be added to the map
-router.get('/api/trucks', (req, res) => {
-  Owners.find(req.query)
-    .then(owners => {
-      var truckArray = []
-      owners.forEach(owner => {
-        owner.foodtrucks.map(truck => {
-          truckArray.push(truck)
-        })
-      })
-      res.status(200).send(truckArray)
-    })
-    .catch(err => {
-      res.status(400).send(err)
-    })
-})
+// // Get all trucks so their positions can be added to the map
+// router.get('/api/trucks', (req, res) => {
+//   Owners.find(req.query)
+//     .then(owners => {
+//       var truckArray = []
+//       owners.forEach(owner => {
+//         owner.foodtrucks.map(truck => {
+//           truckArray.push(truck)
+//         })
+//       })
+//       res.status(200).send(truckArray)
+//     })
+//     .catch(err => {
+//       res.status(400).send(err)
+//     })
+// })
 
 // Get owners trucks
 router.get('/api/owner/:id/trucks', (req, res) => {

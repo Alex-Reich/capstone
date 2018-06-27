@@ -43,8 +43,8 @@ app.use((req,res,next)=>{
   next()
 })
 
-var owners = require('./server-assets/routes/owners')
-app.use(owners.router)
+// var owners = require('./server-assets/routes/owners')
+// app.use(owners.router)
 
 let goog = require('./server-assets/routes/Gapi')
 app.use(goog.router)

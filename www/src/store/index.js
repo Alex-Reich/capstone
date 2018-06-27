@@ -4,7 +4,7 @@ import axios from 'axios'
 import router from '../router'
 
 var production = !window.location.host.includes('localhost');
-var baseUrl = production ? '//heroku' : '//localhost:3000/';
+var baseUrl = production ? '//onwheels.herokuapp.com' : '//localhost:3000/';
 
 vue.use(vuex)
 

@@ -31,8 +31,8 @@ let auth = require('./auth/routes')
 app.use(auth.session)
 app.use(auth.router)
 
-// var trucks = require('./server-assets/routes/Trucks')
-// app.use(trucks.router)
+var trucks = require('./server-assets/routes/Trucks')
+app.use(trucks.router)
 
 app.use((req,res,next)=>{
   if(!req.session.uid){
@@ -43,8 +43,8 @@ app.use((req,res,next)=>{
   next()
 })
 
-// var owners = require('./server-assets/routes/owners')
-// app.use(owners.router)
+var owners = require('./server-assets/routes/owners')
+app.use(owners.router)
 
 let goog = require('./server-assets/routes/Gapi')
 app.use(goog.router)

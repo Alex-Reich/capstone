@@ -4,7 +4,7 @@ import axios from 'axios'
 import router from '../router'
 
 var production = !window.location.host.includes('localhost');
-var baseUrl = production ? '//onwheels.herokuapp.com' : '//localhost:3000/';
+var baseUrl = production ? '//onwheels.herokuapp.com/' : '//localhost:3000/';
 
 vue.use(vuex)
 
@@ -113,11 +113,15 @@ export default new vuex.Store({
         })
     },
     register({ commit }, userData) {
-      console.log(userData)
+    //  console.log("started registration")
       auth.post('register', userData)
         .then(res => {
           commit('setOwner', res.data)
+        //  console.log("completed registration")
           router.push({ name: 'OwnerProfile' })
+        })
+        .catch(err=>{
+          console.log("Error here in store",err)
         })
     },
     authenticate({ commit }) {

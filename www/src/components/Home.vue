@@ -164,6 +164,12 @@
       },
       ownerRegister() {
         this.$store.dispatch('register', this.register)
+        this.register= {
+          username: '',
+          businessName: '',
+          email: '',
+          password: '',
+        }
       },
       getTrucks() {
         this.$store.dispatch('getTrucks', this.search)

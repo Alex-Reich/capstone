@@ -8,12 +8,14 @@ let loginError = new Error('Bad Email or Password')
 
 //Register Owner
 router.post('/auth/register', (req, res) => {
+ // console.log("started registration in server")
   if (req.body.password.length < 5) {
     return res.status(400).send({
       error: 'Password must be at least 6 characters'
     })
   }
   req.body.password = Owners.generateHash(req.body.password)
+ // console.log("password hashed ready to create")
   Owners.create(req.body)
     .then(owner => {
       delete owner._doc.password
@@ -21,6 +23,7 @@ router.post('/auth/register', (req, res) => {
       res.send(owner)
     })
     .catch(err => {
+ //     console.log("server catch hit error occurred")
       res.status(400).send(err)
     })
 })
